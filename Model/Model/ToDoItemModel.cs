@@ -9,11 +9,13 @@ namespace Model.Model
 {
     public class ToDoItemModel
     {
-        public virtual string Text { get; set; }
-        public virtual bool Checked { get; set; }
+        public int Id { get; set; }
+        public string Text { get; set; }
+        public bool Checked { get; set; }
 
         public ToDoItemModel(ToDoItem toDoItem)
         {
+            Id = toDoItem.Id;
             Text = toDoItem.Text;
             Checked = toDoItem.Checked;
         }
