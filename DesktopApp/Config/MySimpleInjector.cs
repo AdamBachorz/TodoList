@@ -23,6 +23,7 @@ namespace DesktopApp.Config
         {
             // DAOs
             _container.Register<IToDoListDao, ToDoListDao>();
+            _container.Register<IToDoItemDao, ToDoItemDao>();
 
             // Services
 

@@ -9,12 +9,15 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Model.DataAccess.Entity;
 using Model.Model;
+using Model.DataAccess.Daos.Interfaces;
 
 namespace DesktopApp.Views
 {
     public partial class ToDoItemControl : UserControl
     {
         private readonly ToDoItemModel _toDoItemModel;
+        private readonly IToDoItemDao _toDoItemDao;
+
         public ToDoItemControl(ToDoItemModel toDoItemModel)
         {
             InitializeComponent();
@@ -32,12 +35,22 @@ namespace DesktopApp.Views
 
         private void EditItem_Opening(object sender, EventArgs e)
         {
-            labelItemText.Visible = false;
+            try
+            {
+                labelItemText.Visible = false;
 
-            var oldText = labelItemText.Text;
+                var oldText = labelItemText.Text;
 
-            textBoxItemText.Visible = true;
-            textBoxItemText.Text = oldText;
+
+
+                textBoxItemText.Visible = true;
+                textBoxItemText.Text = oldText;
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
         }
 
         private void DeleteItem_Opening(object sender, EventArgs e)
