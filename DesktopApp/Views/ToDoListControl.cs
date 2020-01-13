@@ -23,15 +23,18 @@ namespace DesktopApp.Views
         {
             var tItem = new ToDoItem() { Text = "Test123" };
             var tItem2 = new ToDoItem() { Text = "Test345" };
+            var tItem3 = new ToDoItem() { Text = "Test Test Test Test" };
             var todoTest = new ToDoItemControl(new ToDoItemModel(tItem));
             var todoTest2 = new ToDoItemControl(new ToDoItemModel(tItem2));
+            var todoTest3 = new ToDoItemControl(new ToDoItemModel(tItem3));
             flowLayoutPanel1.Controls.Add(todoTest);
             flowLayoutPanel1.Controls.Add(todoTest2);
+            flowLayoutPanel1.Controls.Add(todoTest3);
         }
 
-        private void buttonAddItem_Click(object sender, EventArgs e)
+        private void buttonNewItem_Click(object sender, EventArgs e)
         {
-            var tItem = new ToDoItem() { Text = new Random().Next(1,11).ToString() };
+            var tItem = new ToDoItem() { Text = new Random().Next(1, 11).ToString() };
             var todoTest = new ToDoItemControl(new ToDoItemModel(tItem));
             flowLayoutPanel1.Controls.Add(todoTest);
         }
