@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Model.DataAccess.Daos;
 using Model.DataAccess.Daos.Interfaces;
@@ -22,7 +23,8 @@ namespace Model.Test.DataAccess.Test
         [Test]
         public void GetAll_NoExceptions()
         {
-            Assert.DoesNotThrow(() => _toDoListDao.GetAll());
+            IList<ToDoList> toDoLists = null;
+            Assert.DoesNotThrow(() => toDoLists = _toDoListDao.GetAll());
         }
     }
 }

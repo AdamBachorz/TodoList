@@ -25,7 +25,7 @@ namespace Model.DataAccess.Mappings
                     c.Inverse(true);
                     c.Key(k =>
                     {
-                        k.Column("TO_DO_ITEM_ID");
+                        k.Column("TO_DO_LIST_ID");
                     });
 
                 },

@@ -20,7 +20,7 @@ namespace Model.DataAccess.Mappings
 
             ManyToOne(x => x.ToDoList, map =>
             {
-                map.Column("TO_DO_ITEM_ID");
+                map.Column("TO_DO_LIST_ID");
             });
         }
     }
