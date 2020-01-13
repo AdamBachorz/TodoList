@@ -9,6 +9,6 @@ namespace Model.DataAccess.Daos.Interfaces
 {
     public interface IToDoItemDao : IBaseDao<ToDoItem>
     {
-
+        IList<ToDoItem> GetItemsByListId(int listId);
     }
 }

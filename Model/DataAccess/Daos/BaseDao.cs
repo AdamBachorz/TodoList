@@ -25,7 +25,7 @@ namespace Model.DataAccess.Daos
             using (var session = NHibernateHelper.OpenSession())
             {
                 return session.CreateCriteria(typeof(E))
-                    .Add(Restrictions.Eq("Id", id))
+                    .Add(Restrictions.Eq("ID", id))
                     .UniqueResult<E>();
             }
         }

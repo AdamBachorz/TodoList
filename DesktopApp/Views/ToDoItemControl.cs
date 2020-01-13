@@ -18,11 +18,12 @@ namespace DesktopApp.Views
         private readonly ToDoItemModel _toDoItemModel;
         private readonly IToDoItemDao _toDoItemDao;
 
-        public ToDoItemControl(ToDoItemModel toDoItemModel)
+        public ToDoItemControl(ToDoItemModel toDoItemModel, IToDoItemDao toDoItemDao)
         {
             InitializeComponent();
 
             _toDoItemModel = toDoItemModel;
+            _toDoItemDao = toDoItemDao;
             labelItemText.Text = _toDoItemModel.Text;
             checkBoxChecked.Checked = _toDoItemModel.Checked;
 
@@ -35,22 +36,13 @@ namespace DesktopApp.Views
 
         private void EditItem_Opening(object sender, EventArgs e)
         {
-            try
-            {
-                labelItemText.Visible = false;
+            // Enable text editing
+            labelItemText.Visible = false;
 
-                var oldText = labelItemText.Text;
-
-
-
-                textBoxItemText.Visible = true;
-                textBoxItemText.Text = oldText;
-            }
-            catch (Exception ex)
-            {
-
-                throw ex;
-            }
+            var oldText = labelItemText.Text;
+                
+            textBoxItemText.Visible = true;
+            textBoxItemText.Text = oldText;
         }
 
         private void DeleteItem_Opening(object sender, EventArgs e)
@@ -63,6 +55,7 @@ namespace DesktopApp.Views
             switch (e.KeyCode)
             {
                 case Keys.Enter:
+                    // Getting old and new text
                     var oldText = labelItemText.Text;
                     var newText = textBoxItemText.Text;
 
@@ -71,9 +64,24 @@ namespace DesktopApp.Views
                         BringBackTextLabel();
                         return;
                     }
-                
-                    labelItemText.Text = newText;
-                    BringBackTextLabel();
+
+                    try
+                    {
+                        // Update on DB
+                        var oldItem = _toDoItemDao.GetOneById(_toDoItemModel.Id);
+                        oldItem.Text = newText;
+                        _toDoItemDao.Update(oldItem);
+                        
+                        // Display label again
+                        labelItemText.Text = newText;
+                        BringBackTextLabel();
+                    }
+                    catch (Exception ex)
+                    {
+                        labelItemText.Text = oldText;
+                        BringBackTextLabel();
+                        throw ex;
+                    }
                     break;
 
                 case Keys.Escape:

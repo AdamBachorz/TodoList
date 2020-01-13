@@ -56,7 +56,6 @@
   <ItemGroup>
     <Compile Include="DataAccess.Test\ToDoListDaoTest.cs" />
     <Compile Include="DataAccess.Test\ToDoItemDaoTest.cs" />
-    <Compile Include="UnitTest1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -9,34 +9,46 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Model.Model;
 using Model.DataAccess.Entity;
+using Model.DataAccess.Daos.Interfaces;
 
 namespace DesktopApp.Views
 {
     public partial class ToDoListControl : UserControl
     {
-        public ToDoListControl()
+        private readonly ToDoListModel _toDoListModel;
+        private readonly IToDoListDao _toDoListDao;
+        private readonly IToDoItemDao _toDoItemDao;
+
+        public ToDoListControl(ToDoListModel toDoListModel, IToDoListDao toDoListDao, IToDoItemDao toDoItemDao)
         {
             InitializeComponent();
+
+            _toDoListModel = toDoListModel;
+            _toDoListDao = toDoListDao;
+            _toDoItemDao = toDoItemDao;
+
+            labelTitleDate.Text = _toDoListModel.TitleDate;
+            
+            var itemControls = GenerateItemsControls(_toDoListModel.ToDoItems).ToArray();
+            flowLayoutPanel1.Controls.AddRange(itemControls);           
         }
 
         private void ToDoListControl_Load(object sender, EventArgs e)
         {
-            var tItem = new ToDoItem() { Text = "Test123" };
-            var tItem2 = new ToDoItem() { Text = "Test345" };
-            var tItem3 = new ToDoItem() { Text = "Test Test Test Test" };
-            var todoTest = new ToDoItemControl(new ToDoItemModel(tItem));
-            var todoTest2 = new ToDoItemControl(new ToDoItemModel(tItem2));
-            var todoTest3 = new ToDoItemControl(new ToDoItemModel(tItem3));
-            flowLayoutPanel1.Controls.Add(todoTest);
-            flowLayoutPanel1.Controls.Add(todoTest2);
-            flowLayoutPanel1.Controls.Add(todoTest3);
+            
         }
 
         private void buttonNewItem_Click(object sender, EventArgs e)
         {
-            var tItem = new ToDoItem() { Text = new Random().Next(1, 11).ToString() };
-            var todoTest = new ToDoItemControl(new ToDoItemModel(tItem));
-            flowLayoutPanel1.Controls.Add(todoTest);
+            
+        }
+
+        private IEnumerable<ToDoItemControl> GenerateItemsControls(IList<ToDoItemModel> toDoItemModels)
+        {
+            foreach (var model in toDoItemModels)
+            {
+                yield return new ToDoItemControl(model, _toDoItemDao);
+            }
         }
     }
 }
