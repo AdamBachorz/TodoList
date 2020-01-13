@@ -63,10 +63,14 @@
     <Compile Include="DataAccess\Daos\BaseDao.cs" />
     <Compile Include="DataAccess\Daos\Interfaces\IBaseDao.cs" />
     <Compile Include="DataAccess\Entity\IEntity.cs" />
+    <Compile Include="DataAccess\Entity\ToDoItem.cs" />
+    <Compile Include="DataAccess\Entity\ToDoList.cs" />
+    <Compile Include="DataAccess\Mappings\ToDoItemMapping.cs" />
+    <Compile Include="DataAccess\Mappings\ToDoListMapping.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="DataAccess\Mappings\" />
+    <Folder Include="DataAccess\DataTransfer\" />
     <Folder Include="Domain\" />
     <Folder Include="Services\Interfaces\" />
   </ItemGroup>
