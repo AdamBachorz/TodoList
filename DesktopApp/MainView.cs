@@ -1,4 +1,5 @@
-﻿using Model.DataAccess.Daos.Interfaces;
+﻿using DesktopApp.Views;
+using Model.DataAccess.Daos.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -18,13 +19,24 @@ namespace DesktopApp
         public MainView(IToDoListDao toDoListDao)
         {
             _toDoListDao = toDoListDao;
+
             InitializeComponent();
         }
 
         private void MainView_Load(object sender, EventArgs e)
         {
             var testList = _toDoListDao.GetAll();
-            MessageBox.Show(testList.Count.ToString());
+            flowLayoutPanel1.Controls.Add(new ToDoListControl());
+        }
+
+        private void buttonPrevious_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void buttonNext_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

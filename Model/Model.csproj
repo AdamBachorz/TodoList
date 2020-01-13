@@ -69,6 +69,7 @@
     <Compile Include="DataAccess\Entity\ToDoList.cs" />
     <Compile Include="DataAccess\Mappings\ToDoItemMapping.cs" />
     <Compile Include="DataAccess\Mappings\ToDoListMapping.cs" />
+    <Compile Include="Model\ToDoItemModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
