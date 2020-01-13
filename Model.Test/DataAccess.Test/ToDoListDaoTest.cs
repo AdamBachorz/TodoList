@@ -25,6 +25,7 @@ namespace Model.Test.DataAccess.Test
         {
             IList<ToDoList> toDoLists = null;
             Assert.DoesNotThrow(() => toDoLists = _toDoListDao.GetAll());
+            Assert.NotNull(toDoLists);
         }
     }
 }
