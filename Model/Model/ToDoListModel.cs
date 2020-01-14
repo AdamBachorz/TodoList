@@ -20,12 +20,6 @@ namespace Model.Model
             ToDoItems = toDoList.ToDoItems.Select(tdi => new ToDoItemModel(tdi)).ToList();
         }
 
-        public string TitleDate
-        {
-            get
-            {
-                return $"{Date.DayOfWeek}, {Date.ToShortDateString()}";
-            }
-        }
+        public string TitleDate => $"{Date.DayOfWeek}, {Date.ToShortDateString()}";
     }
 }
