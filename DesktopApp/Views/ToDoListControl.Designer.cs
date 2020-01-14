@@ -89,6 +89,7 @@
             this.buttonPickDate.TabIndex = 0;
             this.buttonPickDate.Text = "Data";
             this.buttonPickDate.UseVisualStyleBackColor = true;
+            this.buttonPickDate.Click += new System.EventHandler(this.buttonPickDate_Click);
             // 
             // labelTitleDate
             // 
@@ -120,7 +121,6 @@
             this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "ToDoListControl";
             this.Size = new System.Drawing.Size(435, 600);
-            this.Load += new System.EventHandler(this.ToDoListControl_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel2.PerformLayout();

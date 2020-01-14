@@ -21,7 +21,7 @@ namespace Model.DataAccess.Daos
             using (var session = NHibernateHelper.OpenSession())
             {
                 return session.CreateCriteria(typeof(ToDoList))
-                    .Add(Restrictions.Eq("DATE", dateTime))
+                    .Add(Restrictions.Eq("Date", dateTime))
                     .UniqueResult<ToDoList>();
             }
         }

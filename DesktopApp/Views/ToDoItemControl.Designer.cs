@@ -31,8 +31,8 @@
             this.checkBoxChecked = new System.Windows.Forms.CheckBox();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.labelItemText = new System.Windows.Forms.Label();
             this.textBoxItemText = new System.Windows.Forms.TextBox();
+            this.labelItemText = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -78,6 +78,16 @@
             this.panel1.Size = new System.Drawing.Size(366, 32);
             this.panel1.TabIndex = 3;
             // 
+            // textBoxItemText
+            // 
+            this.textBoxItemText.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.textBoxItemText.Location = new System.Drawing.Point(0, 0);
+            this.textBoxItemText.Name = "textBoxItemText";
+            this.textBoxItemText.Size = new System.Drawing.Size(366, 20);
+            this.textBoxItemText.TabIndex = 2;
+            this.textBoxItemText.Visible = false;
+            this.textBoxItemText.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBoxItemText_KeyDown);
+            // 
             // labelItemText
             // 
             this.labelItemText.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -91,16 +101,6 @@
             this.labelItemText.TabIndex = 1;
             this.labelItemText.Text = "To Do List Text";
             this.labelItemText.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // textBoxItemText
-            // 
-            this.textBoxItemText.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBoxItemText.Location = new System.Drawing.Point(0, 0);
-            this.textBoxItemText.Name = "textBoxItemText";
-            this.textBoxItemText.Size = new System.Drawing.Size(366, 20);
-            this.textBoxItemText.TabIndex = 2;
-            this.textBoxItemText.Visible = false;
-            this.textBoxItemText.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBoxItemText_KeyDown);
             // 
             // ToDoItemControl
             // 

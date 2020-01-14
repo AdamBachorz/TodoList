@@ -10,44 +10,62 @@ using System.Windows.Forms;
 using Model.DataAccess.Entity;
 using Model.Model;
 using Model.DataAccess.Daos.Interfaces;
+using Model.Services.Interfaces;
 
 namespace DesktopApp.Views
 {
     public partial class ToDoItemControl : UserControl
     {
         private readonly ToDoItemModel _toDoItemModel;
+        private readonly IToDoListService _toDoListService;
         private readonly IToDoItemDao _toDoItemDao;
+        public string TextCache { get; private set; }
 
-        public ToDoItemControl(ToDoItemModel toDoItemModel, IToDoItemDao toDoItemDao)
+        public ToDoItemControl(ToDoItemModel toDoItemModel, IToDoListService toDoListService, IToDoItemDao toDoItemDao)
         {
             InitializeComponent();
 
+            _toDoListService = toDoListService;
             _toDoItemModel = toDoItemModel;
             _toDoItemDao = toDoItemDao;
             labelItemText.Text = _toDoItemModel.Text;
             checkBoxChecked.Checked = _toDoItemModel.Checked;
 
             var contextMenu = new ContextMenu();
+            contextMenu.MenuItems.Add(new MenuItem("Ustaw Przypomnienie", new EventHandler(SetReminder_Opening))); 
             contextMenu.MenuItems.Add(new MenuItem("Edycja", new EventHandler(EditItem_Opening))); 
             contextMenu.MenuItems.Add(new MenuItem("Usuń", new EventHandler(DeleteItem_Opening)));
 
             tableLayoutPanel1.ContextMenu = contextMenu;
         }
 
-        private void EditItem_Opening(object sender, EventArgs e)
+        public void EditItem()
         {
             // Enable text editing
             labelItemText.Visible = false;
 
             var oldText = labelItemText.Text;
-                
+
             textBoxItemText.Visible = true;
             textBoxItemText.Text = oldText;
+            textBoxItemText.Focus();
+            SendKeys.Send("{RIGHT}");
+        }
+        
+        private void EditItem_Opening(object sender, EventArgs e)
+        {
+            EditItem();
         }
 
         private void DeleteItem_Opening(object sender, EventArgs e)
         {
+            _toDoListService.DeleteItemFromListCahce(_toDoItemModel.ToDoListId, _toDoItemModel.Id);
+            _toDoItemDao.Delete(new ToDoItem() { Id = _toDoItemModel.Id });
             Dispose();
+        }
+        private void SetReminder_Opening(object sender, EventArgs e)
+        {
+            
         }
 
         private void textBoxItemText_KeyDown(object sender, KeyEventArgs e)
@@ -74,6 +92,7 @@ namespace DesktopApp.Views
                         
                         // Display label again
                         labelItemText.Text = newText;
+                        _toDoListService.UpdateListCahce(oldItem.ToDoList.Id, oldItem); // TODO: Fix cache
                         BringBackTextLabel();
                     }
                     catch (Exception ex)

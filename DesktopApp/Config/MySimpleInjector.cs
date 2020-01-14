@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using Model.DataAccess.Daos;
 using Model.DataAccess.Daos.Interfaces;
+using Model.Services;
+using Model.Services.Interfaces;
 using SimpleInjector;
 using SimpleInjector.Lifestyles;
 
@@ -26,7 +28,7 @@ namespace DesktopApp.Config
             _container.Register<IToDoItemDao, ToDoItemDao>();
 
             // Services
-
+            _container.Register<IToDoListService, ToDoListService>();
 
             _container.Register<MainView>();
         }
