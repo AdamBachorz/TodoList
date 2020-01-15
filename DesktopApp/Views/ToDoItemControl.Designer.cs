@@ -49,6 +49,7 @@
             this.checkBoxChecked.Size = new System.Drawing.Size(47, 32);
             this.checkBoxChecked.TabIndex = 1;
             this.checkBoxChecked.UseVisualStyleBackColor = true;
+            this.checkBoxChecked.CheckedChanged += new System.EventHandler(this.checkBoxChecked_CheckedChanged);
             // 
             // tableLayoutPanel1
             // 

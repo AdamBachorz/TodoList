@@ -12,6 +12,7 @@ namespace Model.Model
         public int Id { get; set; }
         public string Text { get; set; }
         public bool Checked { get; set; }
+        public DateTime? RemindDate { get; set; }
         public int ToDoListId { get; set; }
 
         public ToDoItemModel(ToDoItem toDoItem)
@@ -19,6 +20,7 @@ namespace Model.Model
             Id = toDoItem.Id;
             Text = toDoItem.Text;
             Checked = toDoItem.Checked;
+            RemindDate = toDoItem.RemindDate;
             ToDoListId = toDoItem.ToDoList.Id;
         }
     }

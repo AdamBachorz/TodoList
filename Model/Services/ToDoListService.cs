@@ -71,7 +71,9 @@ namespace Model.Services
 
             targetItem = _toDoListCache.FirstOrDefault(tdl => tdl.Id == listId)
                 .ToDoItems.FirstOrDefault(tdi => tdi.Id == toDoItem.Id);
-            targetItem.Text = toDoItem.Text; 
+            targetItem.Text = toDoItem.Text;
+            targetItem.Checked = toDoItem.Checked;
+            targetItem.RemindDate = toDoItem.RemindDate;
         }
 
         public ToDoItem DeleteItemFromListCache(int listId, int toDoItemId)

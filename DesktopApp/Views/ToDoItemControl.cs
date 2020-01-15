@@ -11,6 +11,7 @@ using Model.DataAccess.Entity;
 using Model.Model;
 using Model.DataAccess.Daos.Interfaces;
 using Model.Services.Interfaces;
+using Model.Extensions;
 
 namespace DesktopApp.Views
 {
@@ -112,6 +113,14 @@ namespace DesktopApp.Views
             textBoxItemText.Text = string.Empty;
             textBoxItemText.Visible = false;
             labelItemText.Visible = true;
+        }
+
+        private void checkBoxChecked_CheckedChanged(object sender, EventArgs e)
+        {
+            _toDoItemModel.Checked = checkBoxChecked.Checked;
+            var objectToUpdate = _toDoItemModel.ToEntity();
+            _toDoItemDao.Update(objectToUpdate);
+            _toDoListService.UpdateListCache(_toDoItemModel.ToDoListId, objectToUpdate);
         }
     }
 }
