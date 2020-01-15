@@ -12,6 +12,8 @@ using Model.Model;
 using Model.DataAccess.Daos.Interfaces;
 using Model.Services.Interfaces;
 using Model.Extensions;
+using DesktopApp.OtherForms;
+using Model.Core;
 
 namespace DesktopApp.Views
 {
@@ -30,6 +32,7 @@ namespace DesktopApp.Views
             _toDoItemDao = toDoItemDao;
             labelItemText.Text = _toDoItemModel.Text;
             checkBoxChecked.Checked = _toDoItemModel.Checked;
+            labelRemindBell.Text = _toDoItemModel.HasValidRemindDate ? Constants.Symbols.Bell : "";
 
             var contextMenu = new ContextMenu();
             contextMenu.MenuItems.Add(new MenuItem("Ustaw Przypomnienie", new EventHandler(SetReminder_Opening))); 
@@ -56,6 +59,14 @@ namespace DesktopApp.Views
             EditItem();
         }
 
+        private void checkBoxChecked_CheckedChanged(object sender, EventArgs e)
+        {
+            _toDoItemModel.Checked = checkBoxChecked.Checked;
+            var objectToUpdate = _toDoItemModel.ToEntity();
+            _toDoItemDao.Update(objectToUpdate);
+            _toDoListService.UpdateListCache(_toDoItemModel.ToDoListId, objectToUpdate);
+        }
+
         private void DeleteItem_Opening(object sender, EventArgs e)
         {
             _toDoListService.DeleteItemFromListCache(_toDoItemModel.ToDoListId, _toDoItemModel.Id);
@@ -64,7 +75,17 @@ namespace DesktopApp.Views
         }
         private void SetReminder_Opening(object sender, EventArgs e)
         {
-            
+            Action<DateTime> pickRemindDateAction = (pickedDate) =>
+            {
+                _toDoItemModel.RemindDate = pickedDate;
+                var objectToUpdate = _toDoItemModel.ToEntity();
+                _toDoItemDao.Update(objectToUpdate);
+                labelRemindBell.Text = _toDoItemModel.HasValidRemindDate ? Constants.Symbols.Bell : "";
+                _toDoListService.UpdateListCache(_toDoItemModel.ToDoListId, objectToUpdate);
+            };
+
+            var remindDatePickerForm = new RemindDatePickerForm(pickRemindDateAction);
+            remindDatePickerForm.Show();
         }
 
         private void textBoxItemText_KeyDown(object sender, KeyEventArgs e)
@@ -114,13 +135,6 @@ namespace DesktopApp.Views
             textBoxItemText.Visible = false;
             labelItemText.Visible = true;
         }
-
-        private void checkBoxChecked_CheckedChanged(object sender, EventArgs e)
-        {
-            _toDoItemModel.Checked = checkBoxChecked.Checked;
-            var objectToUpdate = _toDoItemModel.ToEntity();
-            _toDoItemDao.Update(objectToUpdate);
-            _toDoListService.UpdateListCache(_toDoItemModel.ToDoListId, objectToUpdate);
-        }
+        
     }
 }

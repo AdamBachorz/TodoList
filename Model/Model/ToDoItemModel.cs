@@ -15,6 +15,9 @@ namespace Model.Model
         public DateTime? RemindDate { get; set; }
         public int ToDoListId { get; set; }
 
+        public bool HasValidRemindDate =>
+            RemindDate.HasValue && DateTime.Compare(RemindDate.Value, DateTime.Now) >= 0;
+
         public ToDoItemModel(ToDoItem toDoItem)
         {
             Id = toDoItem.Id;

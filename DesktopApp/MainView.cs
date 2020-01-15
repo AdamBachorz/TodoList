@@ -1,5 +1,6 @@
 ﻿using DesktopApp.OtherForms;
 using DesktopApp.Views;
+using Model.Core;
 using Model.DataAccess.Daos.Interfaces;
 using Model.DataAccess.Entity;
 using Model.Model;
@@ -31,6 +32,9 @@ namespace DesktopApp
             _toDoListService = toDoListService;
             _toDoListDao = toDoListDao;
             _toDoItemDao = toDoItemDao;
+
+            buttonPrevious.Text = Constants.Symbols.LeftArrow;
+            buttonNext.Text = Constants.Symbols.RightArrow;
 
             _toDoListModels = _toDoListService.PopulateToDoListCache().Select(tdl => new ToDoListModel(tdl)).ToList(); 
             var currentList = _toDoListModels.FirstOrDefault(tdlm => tdlm.Date.ToShortDateString() == DateTime.Now.ToShortDateString())

@@ -33,6 +33,7 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.textBoxItemText = new System.Windows.Forms.TextBox();
             this.labelItemText = new System.Windows.Forms.Label();
+            this.labelRemindBell = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -46,18 +47,20 @@
             this.checkBoxChecked.CheckAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.checkBoxChecked.Location = new System.Drawing.Point(3, 3);
             this.checkBoxChecked.Name = "checkBoxChecked";
-            this.checkBoxChecked.Size = new System.Drawing.Size(47, 32);
+            this.checkBoxChecked.Size = new System.Drawing.Size(42, 32);
             this.checkBoxChecked.TabIndex = 1;
             this.checkBoxChecked.UseVisualStyleBackColor = true;
             this.checkBoxChecked.CheckedChanged += new System.EventHandler(this.checkBoxChecked_CheckedChanged);
             // 
             // tableLayoutPanel1
             // 
-            this.tableLayoutPanel1.ColumnCount = 2;
+            this.tableLayoutPanel1.ColumnCount = 3;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 70F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 35F));
             this.tableLayoutPanel1.Controls.Add(this.checkBoxChecked, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.panel1, 1, 0);
+            this.tableLayoutPanel1.Controls.Add(this.labelRemindBell, 2, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -74,9 +77,9 @@
             this.panel1.AutoSize = true;
             this.panel1.Controls.Add(this.textBoxItemText);
             this.panel1.Controls.Add(this.labelItemText);
-            this.panel1.Location = new System.Drawing.Point(56, 3);
+            this.panel1.Location = new System.Drawing.Point(51, 3);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(366, 32);
+            this.panel1.Size = new System.Drawing.Size(335, 32);
             this.panel1.TabIndex = 3;
             // 
             // textBoxItemText
@@ -84,7 +87,7 @@
             this.textBoxItemText.Dock = System.Windows.Forms.DockStyle.Fill;
             this.textBoxItemText.Location = new System.Drawing.Point(0, 0);
             this.textBoxItemText.Name = "textBoxItemText";
-            this.textBoxItemText.Size = new System.Drawing.Size(366, 20);
+            this.textBoxItemText.Size = new System.Drawing.Size(335, 20);
             this.textBoxItemText.TabIndex = 2;
             this.textBoxItemText.Visible = false;
             this.textBoxItemText.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBoxItemText_KeyDown);
@@ -102,6 +105,18 @@
             this.labelItemText.TabIndex = 1;
             this.labelItemText.Text = "To Do List Text";
             this.labelItemText.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // labelRemindBell
+            // 
+            this.labelRemindBell.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.labelRemindBell.AutoSize = true;
+            this.labelRemindBell.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.labelRemindBell.Location = new System.Drawing.Point(392, 2);
+            this.labelRemindBell.Name = "labelRemindBell";
+            this.labelRemindBell.Size = new System.Drawing.Size(30, 33);
+            this.labelRemindBell.TabIndex = 4;
+            this.labelRemindBell.Text = "@";
+            this.labelRemindBell.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // ToDoItemControl
             // 
@@ -125,5 +140,6 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.TextBox textBoxItemText;
         private System.Windows.Forms.Label labelItemText;
+        private System.Windows.Forms.Label labelRemindBell;
     }
 }

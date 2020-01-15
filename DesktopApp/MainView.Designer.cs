@@ -58,8 +58,9 @@
             // 
             // buttonPrevious
             // 
+            this.buttonPrevious.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.buttonPrevious.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.buttonPrevious.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.buttonPrevious.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.buttonPrevious.Location = new System.Drawing.Point(3, 3);
             this.buttonPrevious.Name = "buttonPrevious";
             this.buttonPrevious.Size = new System.Drawing.Size(49, 605);
@@ -70,8 +71,9 @@
             // 
             // buttonNext
             // 
+            this.buttonNext.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.buttonNext.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.buttonNext.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.buttonNext.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.buttonNext.Location = new System.Drawing.Point(505, 3);
             this.buttonNext.Name = "buttonNext";
             this.buttonNext.Size = new System.Drawing.Size(51, 605);

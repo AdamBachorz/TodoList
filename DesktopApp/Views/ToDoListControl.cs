@@ -12,6 +12,7 @@ using Model.DataAccess.Entity;
 using Model.DataAccess.Daos.Interfaces;
 using Model.Services.Interfaces;
 using DesktopApp.OtherForms;
+using Model.Core;
 
 namespace DesktopApp.Views
 {
@@ -30,7 +31,7 @@ namespace DesktopApp.Views
             _toDoListModel = toDoListModel;
             _toDoListDao = toDoListDao;
             _toDoItemDao = toDoItemDao;
-
+            
             SetListControl(_toDoListModel);          
         }
         
