@@ -19,8 +19,7 @@ namespace DesktopApp.Views
         private readonly ToDoItemModel _toDoItemModel;
         private readonly IToDoListService _toDoListService;
         private readonly IToDoItemDao _toDoItemDao;
-        public string TextCache { get; private set; }
-
+        
         public ToDoItemControl(ToDoItemModel toDoItemModel, IToDoListService toDoListService, IToDoItemDao toDoItemDao)
         {
             InitializeComponent();
@@ -35,7 +34,6 @@ namespace DesktopApp.Views
             contextMenu.MenuItems.Add(new MenuItem("Ustaw Przypomnienie", new EventHandler(SetReminder_Opening))); 
             contextMenu.MenuItems.Add(new MenuItem("Edycja", new EventHandler(EditItem_Opening))); 
             contextMenu.MenuItems.Add(new MenuItem("Usuń", new EventHandler(DeleteItem_Opening)));
-
             tableLayoutPanel1.ContextMenu = contextMenu;
         }
 
@@ -59,7 +57,7 @@ namespace DesktopApp.Views
 
         private void DeleteItem_Opening(object sender, EventArgs e)
         {
-            _toDoListService.DeleteItemFromListCahce(_toDoItemModel.ToDoListId, _toDoItemModel.Id);
+            _toDoListService.DeleteItemFromListCache(_toDoItemModel.ToDoListId, _toDoItemModel.Id);
             _toDoItemDao.Delete(new ToDoItem() { Id = _toDoItemModel.Id });
             Dispose();
         }
@@ -92,7 +90,7 @@ namespace DesktopApp.Views
                         
                         // Display label again
                         labelItemText.Text = newText;
-                        _toDoListService.UpdateListCahce(oldItem.ToDoList.Id, oldItem); // TODO: Fix cache
+                        _toDoListService.UpdateListCache(oldItem.ToDoList.Id, oldItem);
                         BringBackTextLabel();
                     }
                     catch (Exception ex)

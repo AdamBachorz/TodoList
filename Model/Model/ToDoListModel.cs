@@ -17,7 +17,7 @@ namespace Model.Model
         {
             Id = toDoList.Id;
             Date = toDoList.Date;
-            ToDoItems = toDoList.ToDoItems.Select(tdi => new ToDoItemModel(tdi)).ToList();
+            ToDoItems = toDoList?.ToDoItems?.Select(tdi => new ToDoItemModel(tdi)).ToList() ?? null;
         }
 
         public string TitleDate => $"{Date.DayOfWeek}, {Date.ToShortDateString()}";

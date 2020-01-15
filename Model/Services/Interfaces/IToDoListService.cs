@@ -11,8 +11,9 @@ namespace Model.Services.Interfaces
     public interface IToDoListService
     {
         IList<ToDoList> PopulateToDoListCache();
-        void UpdateListCahce(int listId, ToDoItem toDoItem);
-        ToDoItem DeleteItemFromListCahce(int listId, int toDoItemId);
+        void AddListToCache(ToDoList toDoList);
+        void UpdateListCache(int listId, ToDoItem toDoItem);
+        ToDoItem DeleteItemFromListCache(int listId, int toDoItemId);
         ToDoList PickNextToDoList(ToDoListModel currentList, bool forward);
     }
 }

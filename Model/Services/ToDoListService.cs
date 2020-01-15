@@ -39,14 +39,19 @@ namespace Model.Services
                 var newToDoList = ToDoList.New(nextDate);
                 int newListId = _toDoListDao.Insert(newToDoList);
                 newToDoList.Id = newListId;
-                _toDoListCache.Add(newToDoList);
+                AddListToCache(newToDoList);
                 return newToDoList;
             }
 
             return nextToDoList;
         }
 
-        public void UpdateListCahce(int listId, ToDoItem toDoItem)
+        public void AddListToCache(ToDoList toDoList)
+        {
+            _toDoListCache.Add(toDoList);
+        }
+
+        public void UpdateListCache(int listId, ToDoItem toDoItem)
         {
             var targetItem = _toDoListCache.FirstOrDefault(tdl => tdl.Id == listId)
                 .ToDoItems.FirstOrDefault(tdi => tdi.Id == toDoItem.Id);
@@ -60,9 +65,10 @@ namespace Model.Services
             targetItem.Text = toDoItem.Text; 
         }
 
-        public ToDoItem DeleteItemFromListCahce(int listId, int toDoItemId)
+        public ToDoItem DeleteItemFromListCache(int listId, int toDoItemId)
         {
-            var targetItem = _toDoListCache.FirstOrDefault(tdl => tdl.Id == listId).ToDoItems.FirstOrDefault(tdi => tdi.Id == toDoItemId);
+            var targetItem = _toDoListCache.FirstOrDefault(tdl => tdl.Id == listId)
+                .ToDoItems.FirstOrDefault(tdi => tdi.Id == toDoItemId);
             _toDoListCache.FirstOrDefault(tdl => tdl.Id == listId).ToDoItems.Remove(targetItem);
             return targetItem;
         }

@@ -55,10 +55,11 @@
             // 
             // buttonPrevious
             // 
+            this.buttonPrevious.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.buttonPrevious.Dock = System.Windows.Forms.DockStyle.Fill;
             this.buttonPrevious.Location = new System.Drawing.Point(3, 3);
             this.buttonPrevious.Name = "buttonPrevious";
-            this.buttonPrevious.Size = new System.Drawing.Size(19, 555);
+            this.buttonPrevious.Size = new System.Drawing.Size(49, 605);
             this.buttonPrevious.TabIndex = 0;
             this.buttonPrevious.Text = "<";
             this.buttonPrevious.UseVisualStyleBackColor = true;
@@ -66,10 +67,11 @@
             // 
             // buttonNext
             // 
+            this.buttonNext.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.buttonNext.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.buttonNext.Location = new System.Drawing.Point(453, 3);
+            this.buttonNext.Location = new System.Drawing.Point(505, 3);
             this.buttonNext.Name = "buttonNext";
-            this.buttonNext.Size = new System.Drawing.Size(328, 555);
+            this.buttonNext.Size = new System.Drawing.Size(51, 605);
             this.buttonNext.TabIndex = 1;
             this.buttonNext.Text = ">";
             this.buttonNext.UseVisualStyleBackColor = true;
@@ -78,9 +80,9 @@
             // flowLayoutPanel1
             // 
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(28, 3);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(58, 3);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(419, 555);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(441, 605);
             this.flowLayoutPanel1.TabIndex = 2;
             // 
             // MainView
@@ -88,6 +90,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(559, 611);
             this.Controls.Add(this.tableLayoutPanel1);
+            this.MaximizeBox = false;
             this.Name = "MainView";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form1";
