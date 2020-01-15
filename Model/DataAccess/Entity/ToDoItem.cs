@@ -14,6 +14,6 @@ namespace Model.DataAccess.Entity
         public virtual DateTime? RemindDate { get; set; }
         public virtual ToDoList ToDoList { get; set; }
 
-        public static ToDoItem New(string text, ToDoList toDoList) => new ToDoItem() { Text = text, ToDoList = toDoList };
+        public static ToDoItem New(ToDoList toDoList, string text = "") => new ToDoItem() { Text = text, ToDoList = toDoList };
     }
 }

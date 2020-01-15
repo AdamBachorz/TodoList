@@ -13,7 +13,7 @@ namespace Model.DataAccess.Daos.Interfaces
         NHibernateHelper NHibernateHelper { get; }
         E GetOneById(int id);
         IList<E> GetAll();
-        int Insert(E e);
+        E Insert(E e);
         void Update(E e);
         void Delete(E e);
     }

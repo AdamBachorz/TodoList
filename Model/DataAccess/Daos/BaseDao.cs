@@ -38,7 +38,7 @@ namespace Model.DataAccess.Daos
             }
         }
 
-        public int Insert(E e)
+        public E Insert(E e)
         {
             using (var session = NHibernateHelper.OpenSession())
             {
@@ -48,7 +48,8 @@ namespace Model.DataAccess.Daos
                     {
                         var obj = session.Save(e);
                         transaction.Commit();
-                        return Convert.ToInt32(obj);
+                        e.Id = Convert.ToInt32(obj);
+                        return e;
                     }
                     catch (Exception ex)
                     {

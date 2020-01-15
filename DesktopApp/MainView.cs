@@ -77,9 +77,7 @@ namespace DesktopApp
                 //If 'ToDo List' doesn't exist, create new one
                 if (listByDate == null)
                 {
-                    var newList = ToDoList.New(pickedDate);
-                    var newListId = _toDoListDao.Insert(newList);
-                    newList.Id = newListId;
+                    var newList = _toDoListDao.Insert(ToDoList.New(pickedDate));
                     listByDate = newList;
                     _toDoListService.AddListToCache(listByDate);
                 }

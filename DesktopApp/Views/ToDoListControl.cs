@@ -36,10 +36,8 @@ namespace DesktopApp.Views
         
         private void buttonNewItem_Click(object sender, EventArgs e)
         {
-            var listReference = new ToDoList() { Id = _toDoListModel.Id };
-            var newItem = ToDoItem.New("", listReference);
-            var newItemId = _toDoItemDao.Insert(newItem);
-            newItem.Id = newItemId;
+            var listReference = _toDoListService.PickToDoListById(_toDoListModel.Id);
+            var newItem = _toDoItemDao.Insert(ToDoItem.New(listReference));
 
             var newItemControl = new ToDoItemControl(new ToDoItemModel(newItem), _toDoListService, _toDoItemDao);
             
@@ -57,6 +55,7 @@ namespace DesktopApp.Views
         
         private void SetListControl(ToDoListModel toDoListModel)
         {
+            // Remove old list items
             if (_toDoListModel?.ToDoItems?.Any() == true)
             {
                 var toDoItemControls = flowLayoutPanel1.Controls.Cast<Control>()
@@ -71,6 +70,7 @@ namespace DesktopApp.Views
             _toDoListModel = toDoListModel;
             labelTitleDate.Text = _toDoListModel.TitleDate;
 
+            // Populate another list with items (if they exist)
             if (_toDoListModel?.ToDoItems?.Any() == true)
             {
                 var itemControls = GenerateItemsControls(_toDoListModel.ToDoItems).ToArray();

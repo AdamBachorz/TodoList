@@ -39,14 +39,17 @@ namespace Model.Services
             // If list doesn't exist, create new one
             if (nextToDoList == null)
             {
-                var newToDoList = ToDoList.New(nextDate);
-                int newListId = _toDoListDao.Insert(newToDoList);
-                newToDoList.Id = newListId;
+                var newToDoList = _toDoListDao.Insert(ToDoList.New(nextDate));
                 AddListToCache(newToDoList);
                 return newToDoList;
             }
 
             return nextToDoList;
+        }
+
+        public ToDoList PickToDoListById(int listId)
+        {
+            return _toDoListCache.FirstOrDefault(tdl => tdl.Id == listId);
         }
 
         public void AddListToCache(ToDoList toDoList)
@@ -66,6 +69,8 @@ namespace Model.Services
                 .ToDoItems.Add(toDoItem);
             }
 
+            targetItem = _toDoListCache.FirstOrDefault(tdl => tdl.Id == listId)
+                .ToDoItems.FirstOrDefault(tdi => tdi.Id == toDoItem.Id);
             targetItem.Text = toDoItem.Text; 
         }
 
