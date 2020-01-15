@@ -47,37 +47,6 @@ namespace DesktopApp.Views
             newItemControl.EditItem();
         }
         
-        private void buttonPickDate_Click(object sender, EventArgs e)
-        {
-            SetCalendarVisibility(true);
-        }
-
-        private void buttonConfirmDate_Click(object sender, EventArgs e)
-        {
-            //Pick date and find 'ToDo List' for that date
-            var pickedDate = dateTimePicker.Value.Date;
-            var listByDate = _toDoListDao.GetOneByDate(pickedDate);
-
-            //If 'ToDo List' doesn't exist, create new one
-            if (listByDate == null)
-            {
-                var newList = ToDoList.New(pickedDate);
-                var newListId = _toDoListDao.Insert(newList);
-                newList.Id = newListId;
-                listByDate = newList;
-                _toDoListService.AddListToCache(listByDate);
-            }
-
-            // Create model for 'ToDoList' and display it 
-            SetListControl(new ToDoListModel(listByDate));
-            SetCalendarVisibility(false);
-        }
-
-        private void buttonCancel_Click(object sender, EventArgs e)
-        {
-            SetCalendarVisibility(false);
-        }
-
         private IEnumerable<ToDoItemControl> GenerateItemsControls(IList<ToDoItemModel> toDoItemModels)
         {
             foreach (var model in toDoItemModels)
@@ -85,17 +54,10 @@ namespace DesktopApp.Views
                 yield return new ToDoItemControl(model, _toDoListService, _toDoItemDao);
             }
         }
-
-        private void SetCalendarVisibility(bool visible)
-        {
-            dateTimePicker.Visible = visible;
-            buttonConfirmDate.Visible = visible;
-            buttonCancel.Visible = visible;
-        }
-
+        
         private void SetListControl(ToDoListModel toDoListModel)
         {
-            if (_toDoListModel?.ToDoItems.Any() == true)
+            if (_toDoListModel?.ToDoItems?.Any() == true)
             {
                 var toDoItemControls = flowLayoutPanel1.Controls.Cast<Control>()
                     .Where(control => control is ToDoItemControl);
@@ -115,5 +77,6 @@ namespace DesktopApp.Views
                 flowLayoutPanel1.Controls.AddRange(itemControls);
             }
         }
+       
     }
 }

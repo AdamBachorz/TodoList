@@ -1,4 +1,5 @@
-﻿using DesktopApp.Views;
+﻿using DesktopApp.OtherForms;
+using DesktopApp.Views;
 using Model.DataAccess.Daos.Interfaces;
 using Model.DataAccess.Entity;
 using Model.Model;
@@ -38,6 +39,7 @@ namespace DesktopApp
 
             var toDoListControl = new ToDoListControl(currentList, _toDoListService, _toDoListDao, _toDoItemDao);
             flowLayoutPanel1.Controls.Add(toDoListControl);
+            
         }
 
         private void MainView_Load(object sender, EventArgs e)
@@ -63,6 +65,35 @@ namespace DesktopApp
             var toDoListControl = new ToDoListControl(nextListModel, _toDoListService, _toDoListDao, _toDoItemDao);
             flowLayoutPanel1.Controls.Clear();
             flowLayoutPanel1.Controls.Add(toDoListControl);
+        }
+
+        private void buttonPickDate_Click(object sender, EventArgs e)
+        {
+            Action<DateTime> pickToDoListForDateAction = (pickedDate) =>
+            {
+                //Pick date and find 'ToDo List' for that date
+                var listByDate = _toDoListDao.GetOneByDate(pickedDate);
+
+                //If 'ToDo List' doesn't exist, create new one
+                if (listByDate == null)
+                {
+                    var newList = ToDoList.New(pickedDate);
+                    var newListId = _toDoListDao.Insert(newList);
+                    newList.Id = newListId;
+                    listByDate = newList;
+                    _toDoListService.AddListToCache(listByDate);
+                }
+
+                // Create model for 'ToDoList' and display it 
+                flowLayoutPanel1.Controls.Clear();
+                var listByDateModel = new ToDoListModel(listByDate);
+                _currentToDoList = listByDateModel;
+                var toDoListControl = new ToDoListControl(listByDateModel, _toDoListService, _toDoListDao, _toDoItemDao);
+                flowLayoutPanel1.Controls.Add(toDoListControl);
+            };
+
+            var datePickerForm = new DatePickerForm(pickToDoListForDateAction);
+            datePickerForm.Show();
         }
     }
 }

@@ -30,15 +30,10 @@
         {
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
-            this.dateTimePicker = new System.Windows.Forms.DateTimePicker();
-            this.buttonConfirmDate = new System.Windows.Forms.Button();
-            this.buttonCancel = new System.Windows.Forms.Button();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
-            this.buttonPickDate = new System.Windows.Forms.Button();
             this.labelTitleDate = new System.Windows.Forms.Label();
             this.buttonNewItem = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
-            this.flowLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -56,81 +51,31 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 70F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(435, 600);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(435, 568);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // flowLayoutPanel1
             // 
             this.flowLayoutPanel1.AutoScroll = true;
-            this.flowLayoutPanel1.Controls.Add(this.dateTimePicker);
-            this.flowLayoutPanel1.Controls.Add(this.buttonConfirmDate);
-            this.flowLayoutPanel1.Controls.Add(this.buttonCancel);
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(3, 63);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(3, 59);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(429, 414);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(429, 391);
             this.flowLayoutPanel1.TabIndex = 0;
             this.flowLayoutPanel1.WrapContents = false;
             // 
-            // dateTimePicker
-            // 
-            this.dateTimePicker.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.dateTimePicker.CustomFormat = "dd.MM.yyy";
-            this.dateTimePicker.Location = new System.Drawing.Point(3, 3);
-            this.dateTimePicker.Name = "dateTimePicker";
-            this.dateTimePicker.Size = new System.Drawing.Size(275, 20);
-            this.dateTimePicker.TabIndex = 2;
-            this.dateTimePicker.Visible = false;
-            // 
-            // buttonConfirmDate
-            // 
-            this.buttonConfirmDate.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.buttonConfirmDate.Location = new System.Drawing.Point(3, 29);
-            this.buttonConfirmDate.Name = "buttonConfirmDate";
-            this.buttonConfirmDate.Size = new System.Drawing.Size(275, 23);
-            this.buttonConfirmDate.TabIndex = 1;
-            this.buttonConfirmDate.Text = "Zatwierdź";
-            this.buttonConfirmDate.UseVisualStyleBackColor = true;
-            this.buttonConfirmDate.Visible = false;
-            this.buttonConfirmDate.Click += new System.EventHandler(this.buttonConfirmDate_Click);
-            // 
-            // buttonCancel
-            // 
-            this.buttonCancel.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.buttonCancel.Location = new System.Drawing.Point(3, 58);
-            this.buttonCancel.Name = "buttonCancel";
-            this.buttonCancel.Size = new System.Drawing.Size(275, 23);
-            this.buttonCancel.TabIndex = 3;
-            this.buttonCancel.Text = "Wróć";
-            this.buttonCancel.UseVisualStyleBackColor = true;
-            this.buttonCancel.Visible = false;
-            this.buttonCancel.Click += new System.EventHandler(this.buttonCancel_Click);
-            // 
             // tableLayoutPanel2
             // 
-            this.tableLayoutPanel2.ColumnCount = 2;
+            this.tableLayoutPanel2.ColumnCount = 1;
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 80F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanel2.Controls.Add(this.buttonPickDate, 1, 0);
             this.tableLayoutPanel2.Controls.Add(this.labelTitleDate, 0, 0);
             this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 3);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 1;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(429, 54);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(429, 50);
             this.tableLayoutPanel2.TabIndex = 1;
-            // 
-            // buttonPickDate
-            // 
-            this.buttonPickDate.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.buttonPickDate.Location = new System.Drawing.Point(346, 3);
-            this.buttonPickDate.Name = "buttonPickDate";
-            this.buttonPickDate.Size = new System.Drawing.Size(80, 48);
-            this.buttonPickDate.TabIndex = 0;
-            this.buttonPickDate.Text = "Data";
-            this.buttonPickDate.UseVisualStyleBackColor = true;
-            this.buttonPickDate.Click += new System.EventHandler(this.buttonPickDate_Click);
             // 
             // labelTitleDate
             // 
@@ -139,7 +84,7 @@
             this.labelTitleDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.labelTitleDate.Location = new System.Drawing.Point(3, 0);
             this.labelTitleDate.Name = "labelTitleDate";
-            this.labelTitleDate.Size = new System.Drawing.Size(337, 54);
+            this.labelTitleDate.Size = new System.Drawing.Size(423, 50);
             this.labelTitleDate.TabIndex = 1;
             this.labelTitleDate.Text = "Title Date";
             this.labelTitleDate.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -147,9 +92,9 @@
             // buttonNewItem
             // 
             this.buttonNewItem.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.buttonNewItem.Location = new System.Drawing.Point(3, 483);
+            this.buttonNewItem.Location = new System.Drawing.Point(3, 456);
             this.buttonNewItem.Name = "buttonNewItem";
-            this.buttonNewItem.Size = new System.Drawing.Size(429, 114);
+            this.buttonNewItem.Size = new System.Drawing.Size(429, 109);
             this.buttonNewItem.TabIndex = 2;
             this.buttonNewItem.Text = "Dodaj Nowe Zadanie";
             this.buttonNewItem.UseVisualStyleBackColor = true;
@@ -161,9 +106,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "ToDoListControl";
-            this.Size = new System.Drawing.Size(435, 600);
+            this.Size = new System.Drawing.Size(435, 568);
             this.tableLayoutPanel1.ResumeLayout(false);
-            this.flowLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel2.PerformLayout();
             this.ResumeLayout(false);
@@ -177,9 +121,5 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private System.Windows.Forms.Label labelTitleDate;
         private System.Windows.Forms.Button buttonNewItem;
-        private System.Windows.Forms.Button buttonConfirmDate;
-        private System.Windows.Forms.Button buttonPickDate;
-        private System.Windows.Forms.DateTimePicker dateTimePicker;
-        private System.Windows.Forms.Button buttonCancel;
     }
 }

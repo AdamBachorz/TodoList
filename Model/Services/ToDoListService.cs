@@ -14,6 +14,7 @@ namespace Model.Services
     {
         private readonly IToDoListDao _toDoListDao;
         private IList<ToDoList> _toDoListCache;
+        private ToDoList _currentListCache;
 
         public ToDoListService(IToDoListDao toDoListDao)
         {
@@ -23,6 +24,8 @@ namespace Model.Services
         public IList<ToDoList> PopulateToDoListCache()
         {
             _toDoListCache = _toDoListDao.GetAll();
+            _currentListCache = _toDoListCache
+                .FirstOrDefault(tdl => tdl.Date.ToShortDateString() == DateTime.Now.ToShortDateString());
             return _toDoListCache;
         }
 
@@ -49,6 +52,7 @@ namespace Model.Services
         public void AddListToCache(ToDoList toDoList)
         {
             _toDoListCache.Add(toDoList);
+            _currentListCache = toDoList;
         }
 
         public void UpdateListCache(int listId, ToDoItem toDoItem)
