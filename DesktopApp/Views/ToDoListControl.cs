@@ -20,17 +20,17 @@ namespace DesktopApp.Views
     {
         private readonly IToDoListService _toDoListService;
         private readonly IToDoListDao _toDoListDao;
-        private readonly IToDoItemDao _toDoItemDao;
+        private readonly IToDoTaskDao _toDoTaskDao;
         private ToDoListModel _toDoListModel;
 
-        public ToDoListControl(ToDoListModel toDoListModel, IToDoListService toDoListService, IToDoListDao toDoListDao, IToDoItemDao toDoItemDao)
+        public ToDoListControl(ToDoListModel toDoListModel, IToDoListService toDoListService, IToDoListDao toDoListDao, IToDoTaskDao toDoTaskDao)
         {
             InitializeComponent();
 
             _toDoListService = toDoListService;
             _toDoListModel = toDoListModel;
             _toDoListDao = toDoListDao;
-            _toDoItemDao = toDoItemDao;
+            _toDoTaskDao = toDoTaskDao;
             
             SetListControl(_toDoListModel);          
         }
@@ -38,33 +38,33 @@ namespace DesktopApp.Views
         private void buttonNewItem_Click(object sender, EventArgs e)
         {
             var listReference = _toDoListService.PickToDoListById(_toDoListModel.Id);
-            var newItem = _toDoItemDao.Insert(ToDoItem.New(listReference));
+            var newTask = _toDoTaskDao.Insert(ToDoTask.New(listReference));
 
-            var newItemControl = new ToDoItemControl(new ToDoItemModel(newItem), _toDoListService, _toDoItemDao);
+            var newTaskControl = new ToDoTaskControl(new ToDoTaskModel(newTask), _toDoListService, _toDoTaskDao);
             
-            flowLayoutPanel1.Controls.Add(newItemControl);
-            newItemControl.EditItem();
+            flowLayoutPanel1.Controls.Add(newTaskControl);
+            newTaskControl.EditTask();
         }
         
-        private IEnumerable<ToDoItemControl> GenerateItemsControls(IList<ToDoItemModel> toDoItemModels)
+        private IEnumerable<ToDoTaskControl> GenerateTaskControls(IList<ToDoTaskModel> toDoTaskModels)
         {
-            foreach (var model in toDoItemModels)
+            foreach (var model in toDoTaskModels)
             {
-                yield return new ToDoItemControl(model, _toDoListService, _toDoItemDao);
+                yield return new ToDoTaskControl(model, _toDoListService, _toDoTaskDao);
             }
         }
         
         private void SetListControl(ToDoListModel toDoListModel)
         {
             // Remove old list items
-            if (_toDoListModel?.ToDoItems?.Any() == true)
+            if (_toDoListModel?.ToDoTasks?.Any() == true)
             {
-                var toDoItemControls = flowLayoutPanel1.Controls.Cast<Control>()
-                    .Where(control => control is ToDoItemControl);
+                var toDoTaskControls = flowLayoutPanel1.Controls.Cast<Control>()
+                    .Where(control => control is ToDoTaskControl);
 
-                foreach (var itemControl in toDoItemControls)
+                foreach (var taskControl in toDoTaskControls)
                 {
-                    flowLayoutPanel1.Controls.Remove(itemControl);
+                    flowLayoutPanel1.Controls.Remove(taskControl);
                 }
             }
 
@@ -72,10 +72,10 @@ namespace DesktopApp.Views
             labelTitleDate.Text = _toDoListModel.TitleDate;
 
             // Populate another list with items (if they exist)
-            if (_toDoListModel?.ToDoItems?.Any() == true)
+            if (_toDoListModel?.ToDoTasks?.Any() == true)
             {
-                var itemControls = GenerateItemsControls(_toDoListModel.ToDoItems).ToArray();
-                flowLayoutPanel1.Controls.AddRange(itemControls);
+                var taskControls = GenerateTaskControls(_toDoListModel.ToDoTasks).ToArray();
+                flowLayoutPanel1.Controls.AddRange(taskControls);
             }
         }
        

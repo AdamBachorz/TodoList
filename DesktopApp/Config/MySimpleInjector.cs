@@ -25,14 +25,14 @@ namespace DesktopApp.Config
         {
             // DAOs
             _container.Register<IToDoListDao, ToDoListDao>();
-            _container.Register<IToDoItemDao, ToDoItemDao>();
+            _container.Register<IToDoTaskDao, ToDoTaskDao>();
 
             // Services
             _container.Register<IToDoListService, ToDoListService>();
 
-            _container.Register<MainView>();
+            _container.Register<MainForm>();
         }
 
-        public MainView MainViewInstance => _container.GetInstance<MainView>();
+        public MainForm MainViewInstance => _container.GetInstance<MainForm>();
     }
 }

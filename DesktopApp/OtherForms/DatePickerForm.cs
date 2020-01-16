@@ -20,8 +20,8 @@ namespace DesktopApp.OtherForms
 
             _doAferDatePick = doAferDatePick;
         }
-
-        private void button1_Click(object sender, EventArgs e)
+        
+        private void buttonConfirmDate_Click(object sender, EventArgs e)
         {
             var pickedDate = dateTimePicker1.Value.Date;
             _doAferDatePick(pickedDate);

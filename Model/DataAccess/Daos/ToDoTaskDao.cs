@@ -9,20 +9,20 @@ using System.Threading.Tasks;
 
 namespace Model.DataAccess.Daos
 {
-    public class ToDoItemDao : BaseDao<ToDoItem>, IToDoItemDao
+    public class ToDoTaskDao : BaseDao<ToDoTask>, IToDoTaskDao
     {
-        public ToDoItemDao() : base()
+        public ToDoTaskDao() : base()
         {
 
         }
 
-        public IList<ToDoItem> GetItemsByListId(int listId)
+        public IList<ToDoTask> GetTasksByListId(int listId)
         {
             using(var session = NHibernateHelper.OpenSession())
             {
-                return session.CreateCriteria(typeof(ToDoItem))
+                return session.CreateCriteria(typeof(ToDoTask))
                     .Add(Restrictions.Eq("TO_DO_LIST_ID", listId))
-                    .List<ToDoItem>();
+                    .List<ToDoTask>();
             }
         }
     }

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Model.Model
 {
-    public class ToDoItemModel
+    public class ToDoTaskModel
     {
         public int Id { get; set; }
         public string Text { get; set; }
@@ -18,7 +18,7 @@ namespace Model.Model
         public bool HasValidRemindDate =>
             RemindDate.HasValue && DateTime.Compare(RemindDate.Value, DateTime.Now) >= 0;
 
-        public ToDoItemModel(ToDoItem toDoItem)
+        public ToDoTaskModel(ToDoTask toDoItem)
         {
             Id = toDoItem.Id;
             Text = toDoItem.Text;

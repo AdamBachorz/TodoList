@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 
 namespace Model.DataAccess.Daos.Interfaces
 {
-    public interface IToDoItemDao : IBaseDao<ToDoItem>
+    public interface IToDoTaskDao : IBaseDao<ToDoTask>
     {
-        IList<ToDoItem> GetItemsByListId(int listId);
+        IList<ToDoTask> GetTasksByListId(int listId);
     }
 }

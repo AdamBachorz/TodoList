@@ -17,10 +17,10 @@ namespace Model.DataAccess.Mappings
             Id(x => x.Id, m => { m.Column("ID"); m.Generator(Generators.Native); });
             Property(x => x.Date, m => m.Column("DATE"));
 
-            Bag(x => x.ToDoItems,
+            Bag(x => x.ToDoTasks,
                 c =>
                 {
-                    c.Table("TO_DO_ITEM");
+                    c.Table("TO_DO_TASK");
                     c.Lazy(CollectionLazy.NoLazy);
                     c.Inverse(true);
                     c.Key(k =>
@@ -30,7 +30,7 @@ namespace Model.DataAccess.Mappings
 
                 },
 
-               m => m.OneToMany(a => a.Class(typeof(ToDoItem)))
+               m => m.OneToMany(a => a.Class(typeof(ToDoTask)))
                 );
         }
     }

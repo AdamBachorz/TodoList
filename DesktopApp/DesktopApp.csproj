@@ -50,11 +50,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Config\MySimpleInjector.cs" />
-    <Compile Include="MainView.cs">
+    <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="MainView.Designer.cs">
-      <DependentUpon>MainView.cs</DependentUpon>
+    <Compile Include="MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
     <Compile Include="OtherForms\DatePickerForm.cs">
       <SubType>Form</SubType>
@@ -76,14 +76,14 @@
     <Compile Include="Views\ToDoListControl.Designer.cs">
       <DependentUpon>ToDoListControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\ToDoItemControl.cs">
+    <Compile Include="Views\ToDoTaskControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Views\ToDoItemControl.Designer.cs">
-      <DependentUpon>ToDoItemControl.cs</DependentUpon>
+    <Compile Include="Views\ToDoTaskControl.Designer.cs">
+      <DependentUpon>ToDoTaskControl.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="MainView.resx">
-      <DependentUpon>MainView.cs</DependentUpon>
+    <EmbeddedResource Include="MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="OtherForms\DatePickerForm.resx">
       <DependentUpon>DatePickerForm.cs</DependentUpon>
@@ -103,8 +103,8 @@
     <EmbeddedResource Include="Views\ToDoListControl.resx">
       <DependentUpon>ToDoListControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Views\ToDoItemControl.resx">
-      <DependentUpon>ToDoItemControl.cs</DependentUpon>
+    <EmbeddedResource Include="Views\ToDoTaskControl.resx">
+      <DependentUpon>ToDoTaskControl.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">

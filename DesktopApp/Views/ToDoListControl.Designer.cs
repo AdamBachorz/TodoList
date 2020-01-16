@@ -32,7 +32,7 @@
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.labelTitleDate = new System.Windows.Forms.Label();
-            this.buttonNewItem = new System.Windows.Forms.Button();
+            this.buttonNewTask = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.SuspendLayout();
@@ -43,7 +43,7 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.Controls.Add(this.flowLayoutPanel1, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel2, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.buttonNewItem, 0, 2);
+            this.tableLayoutPanel1.Controls.Add(this.buttonNewTask, 0, 2);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -89,16 +89,16 @@
             this.labelTitleDate.Text = "Title Date";
             this.labelTitleDate.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // buttonNewItem
+            // buttonNewTask
             // 
-            this.buttonNewItem.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.buttonNewItem.Location = new System.Drawing.Point(3, 456);
-            this.buttonNewItem.Name = "buttonNewItem";
-            this.buttonNewItem.Size = new System.Drawing.Size(429, 109);
-            this.buttonNewItem.TabIndex = 2;
-            this.buttonNewItem.Text = "Dodaj Nowe Zadanie";
-            this.buttonNewItem.UseVisualStyleBackColor = true;
-            this.buttonNewItem.Click += new System.EventHandler(this.buttonNewItem_Click);
+            this.buttonNewTask.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.buttonNewTask.Location = new System.Drawing.Point(3, 456);
+            this.buttonNewTask.Name = "buttonNewTask";
+            this.buttonNewTask.Size = new System.Drawing.Size(429, 109);
+            this.buttonNewTask.TabIndex = 2;
+            this.buttonNewTask.Text = "Dodaj Nowe Zadanie";
+            this.buttonNewTask.UseVisualStyleBackColor = true;
+            this.buttonNewTask.Click += new System.EventHandler(this.buttonNewItem_Click);
             // 
             // ToDoListControl
             // 
@@ -120,6 +120,6 @@
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private System.Windows.Forms.Label labelTitleDate;
-        private System.Windows.Forms.Button buttonNewItem;
+        private System.Windows.Forms.Button buttonNewTask;
     }
 }

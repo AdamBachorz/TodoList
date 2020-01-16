@@ -12,8 +12,8 @@ namespace Model.Services.Interfaces
     {
         IList<ToDoList> PopulateToDoListCache();
         void AddListToCache(ToDoList toDoList);
-        void UpdateListCache(int listId, ToDoItem toDoItem);
-        ToDoItem DeleteItemFromListCache(int listId, int toDoItemId);
+        void UpdateListCache(int listId, ToDoTask toDoTask);
+        ToDoTask DeleteTaskFromListCache(int listId, int toDoTaskId);
         ToDoList PickToDoListById(int listId);
         ToDoList PickNextToDoList(ToDoListModel currentList, bool forward);
     }

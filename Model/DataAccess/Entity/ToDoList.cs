@@ -10,7 +10,7 @@ namespace Model.DataAccess.Entity
     {
         public virtual int Id { get; set; }
         public virtual DateTime Date { get; set; }
-        public virtual IList<ToDoItem> ToDoItems { get; set; }
+        public virtual IList<ToDoTask> ToDoTasks { get; set; }
 
         public static ToDoList New(DateTime date) => new ToDoList() { Date = date };
     }

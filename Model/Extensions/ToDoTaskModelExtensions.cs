@@ -8,11 +8,11 @@ using System.Threading.Tasks;
 
 namespace Model.Extensions
 {
-    public static class ToDoItemModelExtensions
+    public static class ToDoTaskModelExtensions
     {
-        public static ToDoItem ToEntity(this ToDoItemModel model)
+        public static ToDoTask ToEntity(this ToDoTaskModel model)
         {
-            return new ToDoItem()
+            return new ToDoTask()
             {
                 Id = model.Id,
                 Text = model.Text,

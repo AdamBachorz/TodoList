@@ -9,22 +9,22 @@ using Assert = NUnit.Framework.Assert;
 namespace Model.Test.DataAccess.Test
 {
     [TestFixture]
-    public class ToDoItemDaoTest
+    public class ToDoTaskDaoTest
     {
-        private IToDoItemDao _toDoItemDao;
+        private IToDoTaskDao _toDoTaskDao;
 
         [SetUp]
         public void Setup()
         {
-            _toDoItemDao = new ToDoItemDao();
+            _toDoTaskDao = new ToDoTaskDao();
         }
 
         [Test]
         public void GetAll_NoExceptions()
         {
-            IList<ToDoItem> toDoItems = null;
-            Assert.DoesNotThrow(() => toDoItems = _toDoItemDao.GetAll());
-            Assert.NotNull(toDoItems);
+            IList<ToDoTask> toDoTasks = null;
+            Assert.DoesNotThrow(() => toDoTasks = _toDoTaskDao.GetAll());
+            Assert.NotNull(toDoTasks);
         }
     }
 }

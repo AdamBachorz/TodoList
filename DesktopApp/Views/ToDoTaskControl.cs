@@ -17,22 +17,23 @@ using Model.Core;
 
 namespace DesktopApp.Views
 {
-    public partial class ToDoItemControl : UserControl
+    public partial class ToDoTaskControl : UserControl
     {
-        private readonly ToDoItemModel _toDoItemModel;
+        private readonly ToDoTaskModel _toDoTaskModel;
         private readonly IToDoListService _toDoListService;
-        private readonly IToDoItemDao _toDoItemDao;
+        private readonly IToDoTaskDao _toDoTaskDao;
         
-        public ToDoItemControl(ToDoItemModel toDoItemModel, IToDoListService toDoListService, IToDoItemDao toDoItemDao)
+        public ToDoTaskControl(ToDoTaskModel toDoTaskModel, IToDoListService toDoListService, IToDoTaskDao toDoTaskDao)
         {
             InitializeComponent();
 
             _toDoListService = toDoListService;
-            _toDoItemModel = toDoItemModel;
-            _toDoItemDao = toDoItemDao;
-            labelItemText.Text = _toDoItemModel.Text;
-            checkBoxChecked.Checked = _toDoItemModel.Checked;
-            labelRemindBell.Text = _toDoItemModel.HasValidRemindDate ? Constants.Symbols.Bell : "";
+            _toDoTaskModel = toDoTaskModel;
+            _toDoTaskDao = toDoTaskDao;
+            
+            labelTaskText.Text = _toDoTaskModel.Text;
+            checkBoxChecked.Checked = _toDoTaskModel.Checked;
+            labelRemindBell.Text = _toDoTaskModel.HasValidRemindDate ? Constants.Symbols.Bell : "";
 
             var contextMenu = new ContextMenu();
             contextMenu.MenuItems.Add(new MenuItem("Ustaw Przypomnienie", new EventHandler(SetReminder_Opening))); 
@@ -41,47 +42,47 @@ namespace DesktopApp.Views
             tableLayoutPanel1.ContextMenu = contextMenu;
         }
 
-        public void EditItem()
+        public void EditTask()
         {
             // Enable text editing
-            labelItemText.Visible = false;
+            labelTaskText.Visible = false;
 
-            var oldText = labelItemText.Text;
+            var oldText = labelTaskText.Text;
 
-            textBoxItemText.Visible = true;
-            textBoxItemText.Text = oldText;
-            textBoxItemText.Focus();
+            textBoxTaskText.Visible = true;
+            textBoxTaskText.Text = oldText;
+            textBoxTaskText.Focus();
             SendKeys.Send("{RIGHT}");
         }
         
         private void EditItem_Opening(object sender, EventArgs e)
         {
-            EditItem();
+            EditTask();
         }
 
         private void checkBoxChecked_CheckedChanged(object sender, EventArgs e)
         {
-            _toDoItemModel.Checked = checkBoxChecked.Checked;
-            var objectToUpdate = _toDoItemModel.ToEntity();
-            _toDoItemDao.Update(objectToUpdate);
-            _toDoListService.UpdateListCache(_toDoItemModel.ToDoListId, objectToUpdate);
+            _toDoTaskModel.Checked = checkBoxChecked.Checked;
+            var objectToUpdate = _toDoTaskModel.ToEntity();
+            _toDoTaskDao.Update(objectToUpdate);
+            _toDoListService.UpdateListCache(_toDoTaskModel.ToDoListId, objectToUpdate);
         }
 
         private void DeleteItem_Opening(object sender, EventArgs e)
         {
-            _toDoListService.DeleteItemFromListCache(_toDoItemModel.ToDoListId, _toDoItemModel.Id);
-            _toDoItemDao.Delete(new ToDoItem() { Id = _toDoItemModel.Id });
+            _toDoListService.DeleteTaskFromListCache(_toDoTaskModel.ToDoListId, _toDoTaskModel.Id);
+            _toDoTaskDao.Delete(new ToDoTask() { Id = _toDoTaskModel.Id });
             Dispose();
         }
         private void SetReminder_Opening(object sender, EventArgs e)
         {
             Action<DateTime> pickRemindDateAction = (pickedDate) =>
             {
-                _toDoItemModel.RemindDate = pickedDate;
-                var objectToUpdate = _toDoItemModel.ToEntity();
-                _toDoItemDao.Update(objectToUpdate);
-                labelRemindBell.Text = _toDoItemModel.HasValidRemindDate ? Constants.Symbols.Bell : "";
-                _toDoListService.UpdateListCache(_toDoItemModel.ToDoListId, objectToUpdate);
+                _toDoTaskModel.RemindDate = pickedDate;
+                var objectToUpdate = _toDoTaskModel.ToEntity();
+                _toDoTaskDao.Update(objectToUpdate);
+                labelRemindBell.Text = _toDoTaskModel.HasValidRemindDate ? Constants.Symbols.Bell : "";
+                _toDoListService.UpdateListCache(_toDoTaskModel.ToDoListId, objectToUpdate);
             };
 
             var remindDatePickerForm = new RemindDatePickerForm(pickRemindDateAction);
@@ -94,8 +95,8 @@ namespace DesktopApp.Views
             {
                 case Keys.Enter:
                     // Getting old and new text
-                    var oldText = labelItemText.Text;
-                    var newText = textBoxItemText.Text;
+                    var oldText = labelTaskText.Text;
+                    var newText = textBoxTaskText.Text;
 
                     if (oldText == newText)
                     {
@@ -106,18 +107,18 @@ namespace DesktopApp.Views
                     try
                     {
                         // Update on DB
-                        var oldItem = _toDoItemDao.GetOneById(_toDoItemModel.Id);
-                        oldItem.Text = newText;
-                        _toDoItemDao.Update(oldItem);
+                        var oldTask = _toDoTaskDao.GetOneById(_toDoTaskModel.Id);
+                        oldTask.Text = newText;
+                        _toDoTaskDao.Update(oldTask);
                         
                         // Display label again
-                        labelItemText.Text = newText;
-                        _toDoListService.UpdateListCache(oldItem.ToDoList.Id, oldItem);
+                        labelTaskText.Text = newText;
+                        _toDoListService.UpdateListCache(oldTask.ToDoList.Id, oldTask);
                         BringBackTextLabel();
                     }
                     catch (Exception ex)
                     {
-                        labelItemText.Text = oldText;
+                        labelTaskText.Text = oldText;
                         BringBackTextLabel();
                         throw ex;
                     }
@@ -131,9 +132,9 @@ namespace DesktopApp.Views
 
         private void BringBackTextLabel()
         {
-            textBoxItemText.Text = string.Empty;
-            textBoxItemText.Visible = false;
-            labelItemText.Visible = true;
+            textBoxTaskText.Text = string.Empty;
+            textBoxTaskText.Visible = false;
+            labelTaskText.Visible = true;
         }
         
     }

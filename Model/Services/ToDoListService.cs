@@ -69,30 +69,30 @@ namespace Model.Services
             _currentListCache = toDoList;
         }
 
-        public void UpdateListCache(int listId, ToDoItem toDoItem)
+        public void UpdateListCache(int listId, ToDoTask toDoTask)
         {
-            var targetItem = _toDoListCache.FirstOrDefault(tdl => tdl.Id == listId)
-                .ToDoItems.FirstOrDefault(tdi => tdi.Id == toDoItem.Id);
+            var targetTask = _toDoListCache.FirstOrDefault(tdl => tdl.Id == listId)
+                .ToDoTasks.FirstOrDefault(tdi => tdi.Id == toDoTask.Id);
 
-            if (targetItem == null)
+            if (targetTask == null)
             {
                 _toDoListCache.FirstOrDefault(tdl => tdl.Id == listId)
-                .ToDoItems.Add(toDoItem);
+                .ToDoTasks.Add(toDoTask);
             }
 
-            targetItem = _toDoListCache.FirstOrDefault(tdl => tdl.Id == listId)
-                .ToDoItems.FirstOrDefault(tdi => tdi.Id == toDoItem.Id);
-            targetItem.Text = toDoItem.Text;
-            targetItem.Checked = toDoItem.Checked;
-            targetItem.RemindDate = toDoItem.RemindDate;
+            targetTask = _toDoListCache.FirstOrDefault(tdl => tdl.Id == listId)
+                .ToDoTasks.FirstOrDefault(tdi => tdi.Id == toDoTask.Id);
+            targetTask.Text = toDoTask.Text;
+            targetTask.Checked = toDoTask.Checked;
+            targetTask.RemindDate = toDoTask.RemindDate;
         }
 
-        public ToDoItem DeleteItemFromListCache(int listId, int toDoItemId)
+        public ToDoTask DeleteTaskFromListCache(int listId, int toDoTaskId)
         {
-            var targetItem = _toDoListCache.FirstOrDefault(tdl => tdl.Id == listId)
-                .ToDoItems.FirstOrDefault(tdi => tdi.Id == toDoItemId);
-            _toDoListCache.FirstOrDefault(tdl => tdl.Id == listId).ToDoItems.Remove(targetItem);
-            return targetItem;
+            var targetTask = _toDoListCache.FirstOrDefault(tdl => tdl.Id == listId)
+                .ToDoTasks.FirstOrDefault(tdi => tdi.Id == toDoTaskId);
+            _toDoListCache.FirstOrDefault(tdl => tdl.Id == listId).ToDoTasks.Remove(targetTask);
+            return targetTask;
         }
     }
 }

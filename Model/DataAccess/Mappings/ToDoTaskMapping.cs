@@ -9,11 +9,11 @@ using NHibernate.Mapping.ByCode.Conformist;
 
 namespace Model.DataAccess.Mappings
 {
-    public class ToDoItemMapping : ClassMapping<ToDoItem>
+    public class ToDoTaskMapping : ClassMapping<ToDoTask>
     {
-        public ToDoItemMapping()
+        public ToDoTaskMapping()
         {
-            Table("TO_DO_ITEM");
+            Table("TO_DO_TASK");
             Id(x => x.Id, m => { m.Column("ID"); m.Generator(Generators.Native); });
             Property(x => x.Text, m => m.Column("TEXT"));
             Property(x => x.Checked, m => m.Column("CHECKED"));

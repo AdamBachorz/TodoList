@@ -1,6 +1,6 @@
 ﻿namespace DesktopApp
 {
-    partial class MainView
+    partial class MainForm
     {
         /// <summary>
         /// Wymagana zmienna projektanta.
@@ -116,13 +116,13 @@
             this.buttonPickDate.UseVisualStyleBackColor = true;
             this.buttonPickDate.Click += new System.EventHandler(this.buttonPickDate_Click);
             // 
-            // MainView
+            // MainForm
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(559, 611);
             this.Controls.Add(this.tableLayoutPanel1);
             this.MaximizeBox = false;
-            this.Name = "MainView";
+            this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.MainView_Load);
