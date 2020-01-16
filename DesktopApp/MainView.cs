@@ -36,7 +36,8 @@ namespace DesktopApp
             buttonPrevious.Text = Constants.Symbols.LeftArrow;
             buttonNext.Text = Constants.Symbols.RightArrow;
 
-            _toDoListModels = _toDoListService.PopulateToDoListCache().Select(tdl => new ToDoListModel(tdl)).ToList(); 
+            _toDoListModels = _toDoListService.PopulateToDoListCache()
+                .Select(tdl => new ToDoListModel(tdl)).ToList(); 
             var currentList = _toDoListModels.FirstOrDefault(tdlm => tdlm.Date.ToShortDateString() == DateTime.Now.ToShortDateString())
                               ?? _toDoListModels.OrderByDescending(tdlm => tdlm.Date).FirstOrDefault();
             _currentToDoList = currentList;

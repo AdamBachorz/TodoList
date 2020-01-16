@@ -24,6 +24,16 @@ namespace Model.Services
         public IList<ToDoList> PopulateToDoListCache()
         {
             _toDoListCache = _toDoListDao.GetAll();
+
+            // If there is no 'To Do List' avaliable, create first one
+            if (_toDoListCache?.Any() != true)
+            {
+                var firstToDoList = _toDoListDao.Insert(ToDoList.New(DateTime.Now.Date));
+                _toDoListCache.Add(firstToDoList);
+                _currentListCache = firstToDoList;
+                return _toDoListCache;
+            }
+
             _currentListCache = _toDoListCache
                 .FirstOrDefault(tdl => tdl.Date.ToShortDateString() == DateTime.Now.ToShortDateString());
             return _toDoListCache;
@@ -31,10 +41,11 @@ namespace Model.Services
 
         public ToDoList PickNextToDoList(ToDoListModel currentList, bool forward)
         {
-            // Pick To Do List for previous or next day  
+            // Pick 'To Do List' for previous or next day  
             var dayShiftValue = forward ? 1 : -1;
             var nextDate = currentList.Date.AddDays(dayShiftValue);
-            var nextToDoList = _toDoListCache.FirstOrDefault(tdl => tdl.Date.ToShortDateString() == nextDate.ToShortDateString());
+            var nextToDoList = _toDoListCache
+                .FirstOrDefault(tdl => tdl.Date.ToShortDateString() == nextDate.ToShortDateString());
 
             // If list doesn't exist, create new one
             if (nextToDoList == null)
