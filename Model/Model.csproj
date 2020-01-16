@@ -73,6 +73,7 @@
     <Compile Include="DataAccess\Mappings\ToDoTaskMapping.cs" />
     <Compile Include="DataAccess\Mappings\ToDoListMapping.cs" />
     <Compile Include="Extensions\DateTimeExtensions.cs" />
+    <Compile Include="Extensions\ToDoTaskExtensions.cs" />
     <Compile Include="Extensions\ToDoTaskModelExtensions.cs" />
     <Compile Include="Model\ToDoTaskModel.cs" />
     <Compile Include="Model\ToDoListModel.cs" />
