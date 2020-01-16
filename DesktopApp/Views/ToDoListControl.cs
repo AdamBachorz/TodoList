@@ -31,17 +31,18 @@ namespace DesktopApp.Views
             _toDoListModel = toDoListModel;
             _toDoListDao = toDoListDao;
             _toDoTaskDao = toDoTaskDao;
+
+            buttonNewTask.Text = Constants.Interface.Main.AddNewTask;
             
-            SetListControl(_toDoListModel);          
+            SetListControl(_toDoListModel);
         }
-        
-        private void buttonNewItem_Click(object sender, EventArgs e)
+        private void buttonNewTask_Click(object sender, EventArgs e)
         {
             var listReference = _toDoListService.PickToDoListById(_toDoListModel.Id);
             var newTask = _toDoTaskDao.Insert(ToDoTask.New(listReference));
 
             var newTaskControl = new ToDoTaskControl(new ToDoTaskModel(newTask), _toDoListService, _toDoTaskDao);
-            
+
             flowLayoutPanel1.Controls.Add(newTaskControl);
             newTaskControl.EditTask();
         }
@@ -78,6 +79,5 @@ namespace DesktopApp.Views
                 flowLayoutPanel1.Controls.AddRange(taskControls);
             }
         }
-       
     }
 }

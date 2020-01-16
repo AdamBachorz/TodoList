@@ -36,9 +36,13 @@ namespace DesktopApp.Views
             labelRemindBell.Text = _toDoTaskModel.HasValidRemindDate ? Constants.Symbols.Bell : "";
 
             var contextMenu = new ContextMenu();
-            contextMenu.MenuItems.Add(new MenuItem("Ustaw Przypomnienie", new EventHandler(SetReminder_Opening))); 
-            contextMenu.MenuItems.Add(new MenuItem("Edycja", new EventHandler(EditItem_Opening))); 
-            contextMenu.MenuItems.Add(new MenuItem("Usuń", new EventHandler(DeleteItem_Opening)));
+            contextMenu.MenuItems.Add(new MenuItem(Constants.Interface.TaskContextMenu.ToRemind, 
+                new EventHandler(SetReminder_Opening))); 
+            contextMenu.MenuItems.Add(new MenuItem(Constants.Interface.TaskContextMenu.Edit, 
+                new EventHandler(EditItem_Opening))); 
+            contextMenu.MenuItems.Add(new MenuItem(Constants.Interface.TaskContextMenu.Delete, 
+                new EventHandler(DeleteItem_Opening)));
+
             tableLayoutPanel1.ContextMenu = contextMenu;
         }
 

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Model.Core;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -19,6 +20,8 @@ namespace DesktopApp.OtherForms
             InitializeComponent();
 
             _doAferDatePick = doAferDatePick;
+
+            buttonConfirmDate.Text = Constants.Interface.DatePicker.Confirm;
         }
         
         private void buttonConfirmDate_Click(object sender, EventArgs e)

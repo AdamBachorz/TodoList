@@ -35,6 +35,7 @@ namespace DesktopApp
 
             buttonPrevious.Text = Constants.Symbols.LeftArrow;
             buttonNext.Text = Constants.Symbols.RightArrow;
+            buttonPickDate.Text = Constants.Interface.Main.PickDate;
 
             _toDoListModels = _toDoListService.PopulateToDoListCache()
                 .Select(tdl => new ToDoListModel(tdl)).ToList(); 

@@ -74,7 +74,7 @@
             this.ClientSize = new System.Drawing.Size(280, 69);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "DatePickerForm";
-            this.Text = "Wybierz datę";
+            this.Text = "Pick date";
             this.tableLayoutPanel1.ResumeLayout(false);
             this.ResumeLayout(false);
 

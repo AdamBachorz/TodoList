@@ -98,7 +98,7 @@
             this.buttonNewTask.TabIndex = 2;
             this.buttonNewTask.Text = "Dodaj Nowe Zadanie";
             this.buttonNewTask.UseVisualStyleBackColor = true;
-            this.buttonNewTask.Click += new System.EventHandler(this.buttonNewItem_Click);
+            this.buttonNewTask.Click += new System.EventHandler(this.buttonNewTask_Click);
             // 
             // ToDoListControl
             // 
