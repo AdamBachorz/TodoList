@@ -17,7 +17,7 @@ namespace Model.DataAccess.Mappings
             Id(x => x.Id, m => { m.Column("ID"); m.Generator(Generators.Native); });
             Property(x => x.Text, m => m.Column("TEXT"));
             Property(x => x.Checked, m => m.Column("CHECKED"));
-            Property(x => x.RemindDate, m => m.Column("REMIND_DATE"));
+            Property(x => x.ToRemind, m => m.Column("TO_REMIND"));
 
             ManyToOne(x => x.ToDoList, map =>
             {

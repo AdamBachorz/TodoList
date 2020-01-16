@@ -84,7 +84,7 @@ namespace Model.Services
                 .ToDoTasks.FirstOrDefault(tdi => tdi.Id == toDoTask.Id);
             targetTask.Text = toDoTask.Text;
             targetTask.Checked = toDoTask.Checked;
-            targetTask.RemindDate = toDoTask.RemindDate;
+            targetTask.ToRemind = toDoTask.ToRemind;
         }
 
         public ToDoTask DeleteTaskFromListCache(int listId, int toDoTaskId)

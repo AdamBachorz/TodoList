@@ -17,9 +17,10 @@ namespace Model.Extensions
                 Id = model.Id,
                 Text = model.Text,
                 Checked = model.Checked,
-                RemindDate = model.RemindDate,
+                ToRemind = model.ToRemind,
                 ToDoList = new ToDoList() { Id = model.ToDoListId}
             };
         }
+        
     }
 }

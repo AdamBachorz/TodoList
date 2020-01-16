@@ -11,7 +11,7 @@ namespace Model.DataAccess.Entity
         public virtual int Id { get; set; }
         public virtual string Text { get; set; }
         public virtual bool Checked { get; set; }
-        public virtual DateTime? RemindDate { get; set; }
+        public virtual bool ToRemind { get; set; }
         public virtual ToDoList ToDoList { get; set; }
 
         public static ToDoTask New(ToDoList toDoList, string text = "") => new ToDoTask() { Text = text, ToDoList = toDoList };

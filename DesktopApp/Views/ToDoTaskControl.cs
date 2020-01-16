@@ -33,11 +33,11 @@ namespace DesktopApp.Views
             
             labelTaskText.Text = _toDoTaskModel.Text;
             checkBoxChecked.Checked = _toDoTaskModel.Checked;
-            labelRemindBell.Text = _toDoTaskModel.HasValidRemindDate ? Constants.Symbols.Bell : "";
+            labelRemindBell.Text = _toDoTaskModel.RemindIndicator;
 
             var contextMenu = new ContextMenu();
             contextMenu.MenuItems.Add(new MenuItem(Constants.Interface.TaskContextMenu.ToRemind, 
-                new EventHandler(SetReminder_Opening))); 
+                new EventHandler(CheckUncheckReminder_Opening))); 
             contextMenu.MenuItems.Add(new MenuItem(Constants.Interface.TaskContextMenu.Edit, 
                 new EventHandler(EditItem_Opening))); 
             contextMenu.MenuItems.Add(new MenuItem(Constants.Interface.TaskContextMenu.Delete, 
@@ -78,19 +78,9 @@ namespace DesktopApp.Views
             _toDoTaskDao.Delete(new ToDoTask() { Id = _toDoTaskModel.Id });
             Dispose();
         }
-        private void SetReminder_Opening(object sender, EventArgs e)
+        private void CheckUncheckReminder_Opening(object sender, EventArgs e)
         {
-            Action<DateTime> pickRemindDateAction = (pickedDate) =>
-            {
-                _toDoTaskModel.RemindDate = pickedDate;
-                var objectToUpdate = _toDoTaskModel.ToEntity();
-                _toDoTaskDao.Update(objectToUpdate);
-                labelRemindBell.Text = _toDoTaskModel.HasValidRemindDate ? Constants.Symbols.Bell : "";
-                _toDoListService.UpdateListCache(_toDoTaskModel.ToDoListId, objectToUpdate);
-            };
-
-            var remindDatePickerForm = new RemindDatePickerForm(pickRemindDateAction);
-            remindDatePickerForm.Show();
+            
         }
 
         private void textBoxItemText_KeyDown(object sender, KeyEventArgs e)
