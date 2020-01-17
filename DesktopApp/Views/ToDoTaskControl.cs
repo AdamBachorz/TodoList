@@ -19,10 +19,10 @@ namespace DesktopApp.Views
 {
     public partial class ToDoTaskControl : UserControl
     {
-        private readonly ToDoTaskModel _toDoTaskModel;
         private readonly IToDoListService _toDoListService;
         private readonly IToDoTaskDao _toDoTaskDao;
-        
+        private ToDoTaskModel _toDoTaskModel;
+
         public ToDoTaskControl(ToDoTaskModel toDoTaskModel, IToDoListService toDoListService, IToDoTaskDao toDoTaskDao)
         {
             InitializeComponent();
@@ -75,12 +75,17 @@ namespace DesktopApp.Views
         private void DeleteItem_Opening(object sender, EventArgs e)
         {
             _toDoListService.DeleteTaskFromListCache(_toDoTaskModel.ToDoListId, _toDoTaskModel.Id);
-            _toDoTaskDao.Delete(new ToDoTask() { Id = _toDoTaskModel.Id });
+            _toDoTaskDao.Delete(_toDoTaskModel.ToEntity());
             Dispose();
         }
         private void CheckUncheckReminder_Opening(object sender, EventArgs e)
         {
-            
+            _toDoTaskModel.ToRemind = !_toDoTaskModel.ToRemind;
+            var taskToUpdate = _toDoTaskModel.ToEntity();
+            _toDoTaskDao.Update(taskToUpdate);
+            _toDoTaskModel = new ToDoTaskModel(taskToUpdate);
+            _toDoListService.UpdateListCache(_toDoTaskModel.ToDoListId, taskToUpdate);
+            labelRemindBell.Text = taskToUpdate.HasValidReminder() ? Constants.Symbols.Bell : "";
         }
 
         private void textBoxItemText_KeyDown(object sender, KeyEventArgs e)
@@ -104,6 +109,9 @@ namespace DesktopApp.Views
                         var oldTask = _toDoTaskDao.GetOneById(_toDoTaskModel.Id);
                         oldTask.Text = newText;
                         _toDoTaskDao.Update(oldTask);
+
+                        // Update model
+                        //_toDoTaskModel = new ToDoTaskModel(oldTask);
                         
                         // Display label again
                         labelTaskText.Text = newText;
@@ -114,7 +122,7 @@ namespace DesktopApp.Views
                     {
                         labelTaskText.Text = oldText;
                         BringBackTextLabel();
-                        throw ex;
+                        //throw ex;
                     }
                     break;
 

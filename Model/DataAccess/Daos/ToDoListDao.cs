@@ -25,5 +25,10 @@ namespace Model.DataAccess.Daos
                     .UniqueResult<ToDoList>();
             }
         }
+        
+        public IList<ToDoList> GetListsWithTaskMarkedToBeReminded()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

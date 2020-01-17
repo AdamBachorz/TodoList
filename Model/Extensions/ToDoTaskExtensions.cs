@@ -16,8 +16,8 @@ namespace Model.Extensions
             var taskNumberOfWeek = taskDate.GetWeekOfYear();
             var currentNumberOfWeek = currentDate.GetWeekOfYear();
 
-            return toDoTask.ToRemind && taskNumberOfWeek == currentNumberOfWeek 
-                && DateTime.Compare(currentDate, taskDate) >= 0;
+            return toDoTask.ToRemind && !toDoTask.Checked && taskNumberOfWeek == currentNumberOfWeek 
+                && DateTime.Compare(currentDate, taskDate) <= 0;
         }
     }
 }

@@ -10,5 +10,6 @@ namespace Model.DataAccess.Daos.Interfaces
     public interface IToDoListDao : IBaseDao<ToDoList>
     {
         ToDoList GetOneByDate(DateTime? dateTime);
+        IList<ToDoList> GetListsWithTaskMarkedToBeReminded();
     }
 }

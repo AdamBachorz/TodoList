@@ -1,6 +1,7 @@
 ﻿using Model.DataAccess.Daos.Interfaces;
 using Model.DataAccess.Entity;
 using Model.Model;
+using Model.Extensions;
 using Model.Services.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -37,6 +38,26 @@ namespace Model.Services
             _currentListCache = _toDoListCache
                 .FirstOrDefault(tdl => tdl.Date.ToShortDateString() == DateTime.Now.ToShortDateString());
             return _toDoListCache;
+        }
+        public IList<ToDoList> GetListsWithValidReminderTasks()
+        {
+            var allListWithTasksMarkedToBeReminded = _toDoListDao.GetAll()
+                .OrderBy(tdl => tdl.Date)
+                .Where(tdl => tdl.ToDoTasks.Any(tdt => tdt.HasValidReminder()))
+                .ToList();
+
+            foreach (var list in allListWithTasksMarkedToBeReminded)
+            {
+                foreach (var task in list.ToDoTasks.ToList())
+                {
+                    if (!task.ToRemind)
+                    {
+                        list.ToDoTasks.Remove(task);
+                    }
+                }
+            }
+
+            return allListWithTasksMarkedToBeReminded.ToList();
         }
 
         public ToDoList PickNextToDoList(ToDoListModel currentList, bool forward)
@@ -94,5 +115,6 @@ namespace Model.Services
             _toDoListCache.FirstOrDefault(tdl => tdl.Id == listId).ToDoTasks.Remove(targetTask);
             return targetTask;
         }
+
     }
 }

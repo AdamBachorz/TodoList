@@ -25,7 +25,8 @@ namespace DesktopApp
         private IList<ToDoListModel> _toDoListModels;
         private ToDoListModel _currentToDoList; 
 
-        public MainForm(IToDoListService toDoListService, IToDoListDao toDoListDao, IToDoTaskDao toDoTaskDao)
+        public MainForm(IToDoListService toDoListService, 
+            IToDoListDao toDoListDao, IToDoTaskDao toDoTaskDao)
         {
             InitializeComponent();
 
@@ -52,7 +53,10 @@ namespace DesktopApp
 
         private void MainView_Load(object sender, EventArgs e)
         {
-
+            var upcomingTaskModels = _toDoListService.GetListsWithValidReminderTasks()
+                .Select(tdl => new ToDoListModel(tdl)).ToList();
+            var upcomingTasksForm = new UpcomingTasksForm(upcomingTaskModels);
+            upcomingTasksForm.Show();
         }
 
         private void buttonPrevious_Click(object sender, EventArgs e)

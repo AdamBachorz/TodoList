@@ -18,10 +18,20 @@ namespace Model.DataAccess.Daos
 
         public IList<ToDoTask> GetTasksByListId(int listId)
         {
-            using(var session = NHibernateHelper.OpenSession())
+            using (var session = NHibernateHelper.OpenSession())
             {
                 return session.CreateCriteria(typeof(ToDoTask))
                     .Add(Restrictions.Eq("TO_DO_LIST_ID", listId))
+                    .List<ToDoTask>();
+            }
+        }
+
+        public IList<ToDoTask> GetTasksWithReminders()
+        {
+            using (var session = NHibernateHelper.OpenSession())
+            {
+                return session.CreateCriteria(typeof(ToDoTask))
+                    .Add(Restrictions.Eq("ToRemind", true))
                     .List<ToDoTask>();
             }
         }

@@ -10,5 +10,6 @@ namespace Model.DataAccess.Daos.Interfaces
     public interface IToDoTaskDao : IBaseDao<ToDoTask>
     {
         IList<ToDoTask> GetTasksByListId(int listId);
+        IList<ToDoTask> GetTasksWithReminders();
     }
 }

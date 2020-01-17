@@ -40,6 +40,7 @@ namespace DesktopApp.Views
         {
             var listReference = _toDoListService.PickToDoListById(_toDoListModel.Id);
             var newTask = _toDoTaskDao.Insert(ToDoTask.New(listReference));
+            _toDoListService.UpdateListCache(listReference.Id, newTask);
 
             var newTaskControl = new ToDoTaskControl(new ToDoTaskModel(newTask), _toDoListService, _toDoTaskDao);
 
@@ -47,11 +48,11 @@ namespace DesktopApp.Views
             newTaskControl.EditTask();
         }
         
-        private IEnumerable<ToDoTaskControl> GenerateTaskControls(IList<ToDoTaskModel> toDoTaskModels)
+        private IEnumerable<ToDoTaskControl> GenerateTaskControls(IList<ToDoTask> toDoTasks)
         {
-            foreach (var model in toDoTaskModels)
+            foreach (var task in toDoTasks)
             {
-                yield return new ToDoTaskControl(model, _toDoListService, _toDoTaskDao);
+                yield return new ToDoTaskControl(new ToDoTaskModel(task), _toDoListService, _toDoTaskDao);
             }
         }
         

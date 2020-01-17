@@ -30,6 +30,11 @@ namespace Model.Core
                 public const string Edit = "Edit";
                 public const string Delete = "Delete";
             }
+
+            public static class UpcomingTasks
+            {
+                public const string MainLabel = "Upcoming tasks for current week";
+            }
         }
 
         public static class Symbols

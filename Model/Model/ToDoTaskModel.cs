@@ -15,18 +15,23 @@ namespace Model.Model
         public string Text { get; set; }
         public bool Checked { get; set; }
         public bool ToRemind { get; set; }
+
         public int ToDoListId { get; set; }
+        public DateTime ToDoListDate { get; set; }
+        public ToDoList ToDoList{ get; set; }
 
         public string RemindIndicator { get; private set; }         
 
-        public ToDoTaskModel(ToDoTask toDoItem)
+        public ToDoTaskModel(ToDoTask toDoTask)
         {
-            Id = toDoItem.Id;
-            Text = toDoItem.Text;
-            Checked = toDoItem.Checked;
-            ToRemind = toDoItem.ToRemind;
-            ToDoListId = toDoItem.ToDoList.Id;
-            RemindIndicator = toDoItem.HasValidReminder() ? Constants.Symbols.Bell : "";
+            Id = toDoTask.Id;
+            Text = toDoTask.Text;
+            Checked = toDoTask.Checked;
+            ToRemind = toDoTask.ToRemind;
+            ToDoListId = toDoTask.ToDoList.Id;
+            ToDoListDate = toDoTask.ToDoList.Date;
+            ToDoList = toDoTask.ToDoList;
+            RemindIndicator = toDoTask.HasValidReminder() ? Constants.Symbols.Bell : "";
         }
     }
 }

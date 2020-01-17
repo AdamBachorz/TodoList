@@ -11,6 +11,7 @@ namespace Model.Services.Interfaces
     public interface IToDoListService
     {
         IList<ToDoList> PopulateToDoListCache();
+        IList<ToDoList> GetListsWithValidReminderTasks();
         void AddListToCache(ToDoList toDoList);
         void UpdateListCache(int listId, ToDoTask toDoTask);
         ToDoTask DeleteTaskFromListCache(int listId, int toDoTaskId);

@@ -11,13 +11,13 @@ namespace Model.Model
     {
         public virtual int Id { get; set; }
         public virtual DateTime Date { get; set; }
-        public virtual IList<ToDoTaskModel> ToDoTasks { get; set; }
+        public virtual IList<ToDoTask> ToDoTasks { get; set; }
 
         public ToDoListModel(ToDoList toDoList)
         {
             Id = toDoList.Id;
             Date = toDoList.Date;
-            ToDoTasks = toDoList?.ToDoTasks?.Select(tdi => new ToDoTaskModel(tdi)).ToList() ?? null;
+            ToDoTasks = toDoList?.ToDoTasks?.ToList() ?? null;
         }
 
         public string TitleDate => $"{Date.DayOfWeek}, {Date.ToShortDateString()}";
