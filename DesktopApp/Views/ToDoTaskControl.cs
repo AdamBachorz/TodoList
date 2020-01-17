@@ -83,7 +83,6 @@ namespace DesktopApp.Views
             _toDoTaskModel.ToRemind = !_toDoTaskModel.ToRemind;
             var taskToUpdate = _toDoTaskModel.ToEntity();
             _toDoTaskDao.Update(taskToUpdate);
-            _toDoTaskModel = new ToDoTaskModel(taskToUpdate);
             _toDoListService.UpdateListCache(_toDoTaskModel.ToDoListId, taskToUpdate);
             labelRemindBell.Text = taskToUpdate.HasValidReminder() ? Constants.Symbols.Bell : "";
         }
@@ -111,7 +110,7 @@ namespace DesktopApp.Views
                         _toDoTaskDao.Update(oldTask);
 
                         // Update model
-                        //_toDoTaskModel = new ToDoTaskModel(oldTask);
+                        _toDoTaskModel.Text = newText;
                         
                         // Display label again
                         labelTaskText.Text = newText;
@@ -122,7 +121,7 @@ namespace DesktopApp.Views
                     {
                         labelTaskText.Text = oldText;
                         BringBackTextLabel();
-                        //throw ex;
+                        throw ex;
                     }
                     break;
 
