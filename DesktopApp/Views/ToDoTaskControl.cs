@@ -14,6 +14,7 @@ using Model.Services.Interfaces;
 using Model.Extensions;
 using DesktopApp.OtherForms;
 using Model.Core;
+using DesktopApp.Extensions;
 
 namespace DesktopApp.Views
 {
@@ -30,11 +31,12 @@ namespace DesktopApp.Views
             _toDoListService = toDoListService;
             _toDoTaskModel = toDoTaskModel;
             _toDoTaskDao = toDoTaskDao;
-            
+
+            labelRemindBell.Image = _toDoTaskModel.ToEntity().HasValidReminder() 
+                ? Properties.Resources.Bell.ResizeTo(Constants.Sizes.DefaultBellSize) : null;
             labelTaskText.Text = _toDoTaskModel.Text;
             checkBoxChecked.Checked = _toDoTaskModel.Checked;
-            labelRemindBell.Text = _toDoTaskModel.RemindIndicator;
-
+            
             var contextMenu = new ContextMenu();
             contextMenu.MenuItems.Add(new MenuItem(Constants.Interface.TaskContextMenu.ToRemind, 
                 new EventHandler(CheckUncheckReminder_Opening))); 
@@ -84,7 +86,8 @@ namespace DesktopApp.Views
             var taskToUpdate = _toDoTaskModel.ToEntity();
             _toDoTaskDao.Update(taskToUpdate);
             _toDoListService.UpdateListCache(_toDoTaskModel.ToDoListId, taskToUpdate);
-            labelRemindBell.Text = taskToUpdate.HasValidReminder() ? Constants.Symbols.Bell : "";
+            labelRemindBell.Image = taskToUpdate.HasValidReminder() 
+                ? Properties.Resources.Bell.ResizeTo(Constants.Sizes.DefaultBellSize) : null;
         }
 
         private void textBoxItemText_KeyDown(object sender, KeyEventArgs e)

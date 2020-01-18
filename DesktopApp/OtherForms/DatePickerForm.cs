@@ -21,6 +21,7 @@ namespace DesktopApp.OtherForms
 
             _doAferDatePick = doAferDatePick;
 
+            Icon = Properties.Resources.Calendar;
             buttonConfirmDate.Text = Constants.Interface.DatePicker.Confirm;
         }
         

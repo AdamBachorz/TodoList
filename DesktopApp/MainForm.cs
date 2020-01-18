@@ -1,4 +1,5 @@
-﻿using DesktopApp.OtherForms;
+﻿using DesktopApp.Extensions;
+using DesktopApp.OtherForms;
 using DesktopApp.Views;
 using Model.Core;
 using Model.DataAccess.Daos.Interfaces;
@@ -34,8 +35,14 @@ namespace DesktopApp
             _toDoListDao = toDoListDao;
             _toDoTaskDao = toDoTaskDao;
 
-            buttonPrevious.Text = Constants.Symbols.LeftArrow;
-            buttonNext.Text = Constants.Symbols.RightArrow;
+            Text = Constants.AppName;
+            Icon = Properties.Resources.List;
+
+            buttonPrevious.Image = Properties.Resources.Left.ResizeTo(Constants.Sizes.DefaultNavigationImageSize);
+            var rightArrowImage = Properties.Resources.Left.ResizeTo(Constants.Sizes.DefaultNavigationImageSize);
+            rightArrowImage.RotateFlip(RotateFlipType.Rotate180FlipY);
+            buttonNext.Image = rightArrowImage;
+
             buttonPickDate.Text = Constants.Interface.Main.PickDate;
 
             _toDoListModels = _toDoListService.PopulateToDoListCache()

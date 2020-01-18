@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,7 +9,15 @@ namespace Model.Core
 {
     public static class Constants
     {
+        public const string AppName = "ToDo List - Adam Bachorz";
         public const string DefaultDateFormat = "dd/MM/yyyy hh:mm:ss";
+
+        public static class Sizes
+        {
+            public static Size DefaultAddImageSize = new Size(50, 50);
+            public static Size DefaultBellSize = new Size(25, 25);
+            public static Size DefaultNavigationImageSize = new Size(25, 25);
+        }
 
         public static class Interface
         {

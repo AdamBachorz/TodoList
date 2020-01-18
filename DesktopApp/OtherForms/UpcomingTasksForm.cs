@@ -15,12 +15,11 @@ namespace DesktopApp.OtherForms
 {
     public partial class UpcomingTasksForm : Form
     {
-        private IList<UpcomingTaskControl> _upcomingTaskControls;
-
         public UpcomingTasksForm(IList<ToDoListModel> toDoListModels)
         {
             InitializeComponent();
 
+            Icon = Properties.Resources.List;
             label.Text = Constants.Interface.UpcomingTasks.MainLabel;
 
             foreach (var listModel in toDoListModels)

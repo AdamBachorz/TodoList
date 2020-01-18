@@ -49,8 +49,8 @@
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 3;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 70F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 77.8169F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 12.32394F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(435, 568);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
@@ -61,7 +61,7 @@
             this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(3, 59);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(429, 391);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(429, 435);
             this.flowLayoutPanel1.TabIndex = 0;
             this.flowLayoutPanel1.WrapContents = false;
             // 
@@ -92,11 +92,10 @@
             // buttonNewTask
             // 
             this.buttonNewTask.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.buttonNewTask.Location = new System.Drawing.Point(3, 456);
+            this.buttonNewTask.Location = new System.Drawing.Point(3, 500);
             this.buttonNewTask.Name = "buttonNewTask";
-            this.buttonNewTask.Size = new System.Drawing.Size(429, 109);
+            this.buttonNewTask.Size = new System.Drawing.Size(429, 65);
             this.buttonNewTask.TabIndex = 2;
-            this.buttonNewTask.Text = "Dodaj Nowe Zadanie";
             this.buttonNewTask.UseVisualStyleBackColor = true;
             this.buttonNewTask.Click += new System.EventHandler(this.buttonNewTask_Click);
             // 

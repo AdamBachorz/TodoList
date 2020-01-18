@@ -13,6 +13,7 @@ using Model.DataAccess.Daos.Interfaces;
 using Model.Services.Interfaces;
 using DesktopApp.OtherForms;
 using Model.Core;
+using DesktopApp.Extensions;
 
 namespace DesktopApp.Views
 {
@@ -31,9 +32,9 @@ namespace DesktopApp.Views
             _toDoListModel = toDoListModel;
             _toDoListDao = toDoListDao;
             _toDoTaskDao = toDoTaskDao;
-
-            buttonNewTask.Text = Constants.Interface.Main.AddNewTask;
             
+            buttonNewTask.Image = Properties.Resources.TaskAdd.ResizeTo(Constants.Sizes.DefaultAddImageSize);
+
             SetListControl(_toDoListModel);
         }
         private void buttonNewTask_Click(object sender, EventArgs e)
