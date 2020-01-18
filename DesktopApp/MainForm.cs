@@ -55,8 +55,12 @@ namespace DesktopApp
         {
             var upcomingTaskModels = _toDoListService.GetListsWithValidReminderTasks()
                 .Select(tdl => new ToDoListModel(tdl)).ToList();
-            var upcomingTasksForm = new UpcomingTasksForm(upcomingTaskModels);
-            upcomingTasksForm.Show();
+
+            if (upcomingTaskModels?.Any() == true)
+            {
+                var upcomingTasksForm = new UpcomingTasksForm(upcomingTaskModels);
+                upcomingTasksForm.Show();
+            }
         }
 
         private void buttonPrevious_Click(object sender, EventArgs e)
