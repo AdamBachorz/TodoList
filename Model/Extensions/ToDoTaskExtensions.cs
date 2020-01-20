@@ -9,7 +9,14 @@ namespace Model.Extensions
 {
     public static class ToDoTaskExtensions
     {
-        public static bool HasValidReminder(this ToDoTask toDoTask)
+        public static bool IsFromPast(this ToDoTask toDoTask)
+        {
+            var taskDate = toDoTask.ToDoList.Date;
+            var currentDate = DateTime.Now.Date;
+            return DateTime.Compare(currentDate, taskDate) == 1;
+        }
+
+            public static bool HasValidReminder(this ToDoTask toDoTask)
         {
             var taskDate = toDoTask.ToDoList.Date;
             var currentDate = DateTime.Now.Date;

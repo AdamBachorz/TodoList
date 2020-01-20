@@ -27,6 +27,11 @@ namespace Model.Core
                 public const string PickDate = "Pick 'To Do List' for another day";
             }
 
+            public static class Errors
+            {
+                public const string NoTaskFromPast = "Cannot set reminder for task from past";
+            }
+
             public static class DatePicker
             {
                 public const string Confirm = "Confirm";

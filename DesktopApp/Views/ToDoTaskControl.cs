@@ -82,11 +82,19 @@ namespace DesktopApp.Views
         }
         private void CheckUncheckReminder_Opening(object sender, EventArgs e)
         {
-            _toDoTaskModel.ToRemind = !_toDoTaskModel.ToRemind;
             var taskToUpdate = _toDoTaskModel.ToEntity();
+
+            if (taskToUpdate.IsFromPast())
+            {
+                MessageBox.Show(Constants.Interface.Errors.NoTaskFromPast);
+                return;
+            }
+
+            _toDoTaskModel.ToRemind = !_toDoTaskModel.ToRemind;
+            taskToUpdate.ToRemind = !taskToUpdate.ToRemind;
             _toDoTaskDao.Update(taskToUpdate);
             _toDoListService.UpdateListCache(_toDoTaskModel.ToDoListId, taskToUpdate);
-            labelRemindBell.Image = taskToUpdate.HasValidReminder() 
+            labelRemindBell.Image = taskToUpdate.ToRemind && !taskToUpdate.IsFromPast() 
                 ? Properties.Resources.Bell.ResizeTo(Constants.Sizes.DefaultBellSize) : null;
         }
 
