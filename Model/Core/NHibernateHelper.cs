@@ -31,6 +31,7 @@ namespace Model.Core
               NHibernate.Cfg.Environment.Dialect,
               typeof(NHibernate.Dialect.MsSql2012Dialect).AssemblyQualifiedName);
 
+            var connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["DefaultConnectionString"].ConnectionString;
             configuration.SetProperty(
               NHibernate.Cfg.Environment.ConnectionString, ConnectionString());
 
