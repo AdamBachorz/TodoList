@@ -15,12 +15,7 @@ namespace Model.Model
         public string Text { get; set; }
         public bool Checked { get; set; }
         public bool ToRemind { get; set; }
-
-        public int ToDoListId { get; set; }
-        public DateTime ToDoListDate { get; set; }
-        public ToDoList ToDoList{ get; set; }
-
-        public string RemindIndicator { get; private set; }         
+        public ToDoList ToDoList{ get; set; }      
 
         public ToDoTaskModel(ToDoTask toDoTask)
         {
@@ -28,10 +23,7 @@ namespace Model.Model
             Text = toDoTask.Text;
             Checked = toDoTask.Checked;
             ToRemind = toDoTask.ToRemind;
-            ToDoListId = toDoTask.ToDoList.Id;
-            ToDoListDate = toDoTask.ToDoList.Date;
             ToDoList = toDoTask.ToDoList;
-            RemindIndicator = toDoTask.HasValidReminder() ? Constants.Symbols.Bell : "";
         }
     }
 }

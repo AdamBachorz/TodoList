@@ -47,15 +47,9 @@ namespace Model.Core
 
             public static class UpcomingTasks
             {
-                public const string MainLabel = "Upcoming tasks for current week";
+                public const string MainLabel = "Upcoming important tasks for current week";
             }
         }
 
-        public static class Symbols
-        {
-            public static string LeftArrow = "⏪";
-            public static string RightArrow = "⏩";
-            public static string Bell = "🔔";
-        }
     }
 }

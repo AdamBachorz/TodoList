@@ -71,12 +71,12 @@ namespace DesktopApp.Views
             _toDoTaskModel.Checked = checkBoxChecked.Checked;
             var objectToUpdate = _toDoTaskModel.ToEntity();
             _toDoTaskDao.Update(objectToUpdate);
-            _toDoListService.UpdateListCache(_toDoTaskModel.ToDoListId, objectToUpdate);
+            _toDoListService.UpdateListCache(_toDoTaskModel.ToDoList.Id, objectToUpdate);
         }
 
         private void DeleteItem_Opening(object sender, EventArgs e)
         {
-            _toDoListService.DeleteTaskFromListCache(_toDoTaskModel.ToDoListId, _toDoTaskModel.Id);
+            _toDoListService.DeleteTaskFromListCache(_toDoTaskModel.ToDoList.Id, _toDoTaskModel.Id);
             _toDoTaskDao.Delete(_toDoTaskModel.ToEntity());
             Dispose();
         }
@@ -93,7 +93,7 @@ namespace DesktopApp.Views
             _toDoTaskModel.ToRemind = !_toDoTaskModel.ToRemind;
             taskToUpdate.ToRemind = !taskToUpdate.ToRemind;
             _toDoTaskDao.Update(taskToUpdate);
-            _toDoListService.UpdateListCache(_toDoTaskModel.ToDoListId, taskToUpdate);
+            _toDoListService.UpdateListCache(_toDoTaskModel.ToDoList.Id, taskToUpdate);
             labelRemindBell.Image = taskToUpdate.ToRemind && !taskToUpdate.IsFromPast() 
                 ? Properties.Resources.Bell.ResizeTo(Constants.Sizes.DefaultBellSize) : null;
         }
